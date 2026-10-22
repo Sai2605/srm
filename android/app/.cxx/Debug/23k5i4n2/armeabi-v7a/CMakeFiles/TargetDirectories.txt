@@ -1,0 +1,12 @@
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/CMakeFiles/appmodules.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/react_codegen_rnscreens.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/edit_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/rebuild_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/react_codegen_rnsvg.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/edit_cache.dir
+D:/ReactNative/DriverApp/android/app/.cxx/Debug/23k5i4n2/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/rebuild_cache.dir
