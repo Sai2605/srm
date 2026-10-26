@@ -3,7 +3,6 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import AuthNavigator from './src/navigation/AuthNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './src/navigation/RootNavigator';
 
@@ -23,7 +22,7 @@ function AppContent() {
 
   return (
     <View style={styles.container}>
-      {/* <NewAppScreen
+      {/* < 
         templateFileName="App.tsx"
         safeAreaInsets={safeAreaInsets}
       /> */}
