@@ -1,26 +1,26 @@
 {
-  "root": "D:\\GitHub\\srm",
-  "reactNativePath": "D:\\GitHub\\srm\\node_modules\\react-native",
+  "root": "D:\\git\\srm",
+  "reactNativePath": "D:\\git\\srm\\node_modules\\react-native",
   "reactNativeVersion": "0.87",
   "dependencies": {
     "@react-native-async-storage/async-storage": {
-      "root": "D:\\GitHub\\srm\\node_modules\\@react-native-async-storage\\async-storage",
+      "root": "D:\\git\\srm\\node_modules\\@react-native-async-storage\\async-storage",
       "name": "@react-native-async-storage/async-storage",
       "platforms": {
         "ios": {
-          "podspecPath": "D:\\GitHub\\srm\\node_modules\\@react-native-async-storage\\async-storage\\AsyncStorage.podspec",
+          "podspecPath": "D:\\git\\srm\\node_modules\\@react-native-async-storage\\async-storage\\AsyncStorage.podspec",
           "version": "3.1.1",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "D:\\GitHub\\srm\\node_modules\\@react-native-async-storage\\async-storage\\android",
+          "sourceDir": "D:\\git\\srm\\node_modules\\@react-native-async-storage\\async-storage\\android",
           "packageImportPath": "import org.asyncstorage.AsyncStoragePackage;",
           "packageInstance": "new AsyncStoragePackage()",
           "buildTypes": [],
           "libraryName": "AsyncStorageSpec",
           "componentDescriptors": [],
-          "cmakeListsPath": "D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "D:/git/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -29,17 +29,17 @@
       }
     },
     "react-native-safe-area-context": {
-      "root": "D:\\GitHub\\srm\\node_modules\\react-native-safe-area-context",
+      "root": "D:\\git\\srm\\node_modules\\react-native-safe-area-context",
       "name": "react-native-safe-area-context",
       "platforms": {
         "ios": {
-          "podspecPath": "D:\\GitHub\\srm\\node_modules\\react-native-safe-area-context\\react-native-safe-area-context.podspec",
+          "podspecPath": "D:\\git\\srm\\node_modules\\react-native-safe-area-context\\react-native-safe-area-context.podspec",
           "version": "5.10.1",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "D:\\GitHub\\srm\\node_modules\\react-native-safe-area-context\\android",
+          "sourceDir": "D:\\git\\srm\\node_modules\\react-native-safe-area-context\\android",
           "packageImportPath": "import com.th3rdwave.safeareacontext.SafeAreaContextPackage;",
           "packageInstance": "new SafeAreaContextPackage()",
           "buildTypes": [],
@@ -48,7 +48,7 @@
             "RNCSafeAreaProviderComponentDescriptor",
             "RNCSafeAreaViewComponentDescriptor"
           ],
-          "cmakeListsPath": "D:/GitHub/srm/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "D:/git/srm/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -57,17 +57,17 @@
       }
     },
     "react-native-screens": {
-      "root": "D:\\GitHub\\srm\\node_modules\\react-native-screens",
+      "root": "D:\\git\\srm\\node_modules\\react-native-screens",
       "name": "react-native-screens",
       "platforms": {
         "ios": {
-          "podspecPath": "D:\\GitHub\\srm\\node_modules\\react-native-screens\\RNScreens.podspec",
+          "podspecPath": "D:\\git\\srm\\node_modules\\react-native-screens\\RNScreens.podspec",
           "version": "4.30.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "D:\\GitHub\\srm\\node_modules\\react-native-screens\\android",
+          "sourceDir": "D:\\git\\srm\\node_modules\\react-native-screens\\android",
           "packageImportPath": "import com.swmansion.rnscreens.RNScreensPackage;",
           "packageInstance": "new RNScreensPackage()",
           "buildTypes": [],
@@ -91,7 +91,7 @@
             "RNSStackHeaderSubviewComponentDescriptor",
             "RNSFormSheetHostComponentDescriptor"
           ],
-          "cmakeListsPath": "D:/GitHub/srm/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "D:/git/srm/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -100,17 +100,17 @@
       }
     },
     "react-native-svg": {
-      "root": "D:\\GitHub\\srm\\node_modules\\react-native-svg",
+      "root": "D:\\git\\srm\\node_modules\\react-native-svg",
       "name": "react-native-svg",
       "platforms": {
         "ios": {
-          "podspecPath": "D:\\GitHub\\srm\\node_modules\\react-native-svg\\RNSVG.podspec",
+          "podspecPath": "D:\\git\\srm\\node_modules\\react-native-svg\\RNSVG.podspec",
           "version": "15.15.5",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "D:\\GitHub\\srm\\node_modules\\react-native-svg\\android",
+          "sourceDir": "D:\\git\\srm\\node_modules\\react-native-svg\\android",
           "packageImportPath": "import com.horcrux.svg.SvgPackage;",
           "packageInstance": "new SvgPackage()",
           "buildTypes": [],
@@ -146,7 +146,7 @@
             "RNSVGTSpanComponentDescriptor",
             "RNSVGUseComponentDescriptor"
           ],
-          "cmakeListsPath": "D:/GitHub/srm/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt",
+          "cmakeListsPath": "D:/git/srm/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -317,7 +317,7 @@
         {
           "name": "--path <path>",
           "description": "Path to the React Native project root.",
-          "default": "D:\\GitHub\\srm"
+          "default": "D:\\git\\srm"
         },
         {
           "name": "--platform <string>",
@@ -357,7 +357,7 @@
         },
         {
           "name": "--deintegrate",
-          "description": "[add] Run `pod deintegrate` and strip React Native from the Podfile before injecting (CocoaPods → SwiftPM migration)."
+          "description": "[add] Run `pod deintegrate` and strip React Native from the Podfile before injecting (CocoaPods â†’ SwiftPM migration)."
         },
         {
           "name": "--artifacts <path>",
@@ -657,7 +657,7 @@
   ],
   "project": {
     "ios": {
-      "sourceDir": "D:\\GitHub\\srm\\ios",
+      "sourceDir": "D:\\git\\srm\\ios",
       "xcodeProject": {
         "name": "DriverApp.xcodeproj",
         "path": ".",
@@ -666,7 +666,7 @@
       "assets": []
     },
     "android": {
-      "sourceDir": "D:\\GitHub\\srm\\android",
+      "sourceDir": "D:\\git\\srm\\android",
       "appName": "app",
       "packageName": "com.driverapp",
       "applicationId": "com.driverapp",

@@ -10,14 +10,67 @@ import {
 import { DriverRow, StopProgress, TripRow, phaseCopy, tripName } from './../../components/trip';
 import { firstName, formatCurrency, formatDayLong, formatMonth, formatTime, greeting } from './../../utils/format';
 import { todayISO } from './../../utils/date';
-import type { Student, Trip } from './../../types/models';
+import type { LivePhase, Student, Trip } from './../../types/models';
+import {
+  mockStudents,
+  mockTrips,
+  mockInvoices,
+  mockProfile,
+  mockLiveTrip,
+} from './../../data/mockStudents';
 
+const USE_MOCK_DATA = true;
 export default function Dashboard() {
+  // const today = todayISO();
+  // const { activeStudent, isLoading: loadingStudents } = useActiveStudent();
+  // const profile = useProfile();
+  // const trips = useTrips(activeStudent?.id, today);
+  // const invoices = usePendingInvoices(activeStudent?.id);
+
   const today = todayISO();
-  const { activeStudent, isLoading: loadingStudents } = useActiveStudent();
-  const profile = useProfile();
-  const trips = useTrips(activeStudent?.id, today);
-  const invoices = usePendingInvoices(activeStudent?.id);
+
+  const {
+    activeStudent: realStudent,
+    isLoading: loadingStudents,
+  } = useActiveStudent();
+
+  const realProfile = useProfile();
+  const realTrips = useTrips(realStudent?.id, today);
+  const realInvoices = usePendingInvoices(realStudent?.id);
+
+  // const activeStudent = USE_MOCK_DATA
+  //   ? mockStudents
+  //   : realStudent;
+
+  const activeStudent = USE_MOCK_DATA
+    ? mockStudents[0] ?? null
+    : Array.isArray(realStudent)
+      ? realStudent[0] ?? null
+      : realStudent;
+
+  const profile = USE_MOCK_DATA
+    ? { data: mockProfile }
+    : realProfile;
+
+  const trips = USE_MOCK_DATA
+    ? {
+      data: mockTrips,
+      isLoading: false,
+      isRefetching: false,
+      refetch: async () => { },
+    }
+    : realTrips;
+
+  const invoices = USE_MOCK_DATA
+    ? {
+      data: mockInvoices,
+      refetch: async () => { },
+    }
+    : realInvoices;
+
+  const isLoadingStudents = USE_MOCK_DATA
+    ? false
+    : loadingStudents;
 
   const activeTrip = trips.data?.find((t: any) => t.status === 'in_progress') ?? null;
   const overdue = invoices.data?.find((i: any) => i.status === 'overdue');
@@ -26,6 +79,8 @@ export default function Dashboard() {
     trips.refetch();
     invoices.refetch();
   };
+
+
 
   return (
     <Screen onRefresh={refresh} refreshing={trips.isRefetching}>
@@ -40,7 +95,7 @@ export default function Dashboard() {
         <IconButton name="notification" label="Notifications" badge />
       </View>
 
-      {loadingStudents ? (
+      {isLoadingStudents ? (
         <LoadingState />
       ) : !activeStudent ? (
         <EmptyState icon="users" title="No students linked yet" message="Add your child using the student ID from school." />
@@ -117,8 +172,14 @@ function StudentSwitcher({ student }: { student: Student }) {
 
 function LiveTripCard({ trip }: { trip: Trip }) {
   const live = useLiveTrip(trip.id);
-  const d = live.data;
-  const copy = d ? phaseCopy[d.phase] : null;
+
+  const d = USE_MOCK_DATA
+    ? mockLiveTrip
+    : live.data;
+
+  const copy = d
+    ? phaseCopy[d.phase as LivePhase]
+    : null;
 
   return (
     <View style={styles.live} accessibilityLabel="Live trip">
