@@ -24,12 +24,12 @@ export default function AuthNavigator() {
         }}
       >
         <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        {/* <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
         <Stack.Screen name="OTP" component={OtpScreen} />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="ForgotPassword"
           component={ForgotPasswordScreen}
-        />
+        /> */}
       </Stack.Navigator>
     // </NavigationContainer>
   );

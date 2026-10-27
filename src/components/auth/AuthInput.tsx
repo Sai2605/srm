@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.text,
-    fontSize: typography.fontSize.md,
-    fontWeight: typography.fontWeight.semibold,
+    // fontSize: typography.fontSize.md,
+    // fontWeight: typography.fontWeight.semibold,
   },
   inputBox: {
     minHeight: 54,
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     color: colors.text,
-    fontSize: typography.fontSize.md,
+    // fontSize: typography.fontSize.md,
     paddingVertical: spacing.md,
   },
   error: {
     color: colors.error,
-    fontSize: typography.fontSize.sm,
+    // fontSize: typography.fontSize.sm,
   },
 });

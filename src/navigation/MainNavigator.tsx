@@ -23,7 +23,7 @@ import {
 } from 'lucide-react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, typography } from '../theme';
+import { colors, fonts, typography } from '../theme';
 
 import DashboardScreen from '../screens/dashboard/Dashboard';
 import TripsScreen from '../screens/trips/Trips';
@@ -80,9 +80,9 @@ function CustomTabBar({
         <View
             style={[
                 styles.tabBarContainer,
-                {
-                    bottom: Math.max(insets.bottom, 12),
-                },
+                // {
+                //     bottom: Math.max(insets.bottom, 12),
+                // },
             ]}
         >
             {state.routes.map((route, index) => {
@@ -165,32 +165,32 @@ function CustomTabBar({
                                 strokeWidth={isFocused ? 2.5 : 2}
                                 color={
                                     isFocused
-                                        ? colors.textOnPrimary
-                                        : colors.textSecondary
+                                        ? colors.primaryDark
+                                        : colors.primaryLight
                                 }
                             />
 
-                            <Animated.View
-                                style={{
-                                    opacity: labelOpacity,
-                                    maxWidth: activeProgress.interpolate({
-                                        inputRange: [0, 1],
-                                        outputRange: [0, 60],
-                                    }),
-                                    overflow: 'hidden',
-                                }}
-                            >
-                                <Text
-                                    numberOfLines={1}
-                                    style={[
-                                        styles.tabLabel,
-                                        styles.activeTabLabel,
-                                    ]}
-                                >
-                                    {label}
-                                </Text>
-                            </Animated.View>
                         </Animated.View>
+                        {/* <Animated.View
+                            style={{
+                                opacity: labelOpacity,
+                                maxWidth: activeProgress.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [0, 60],
+                                }),
+                                overflow: 'hidden',
+                            }}
+                        > */}
+                        <Text
+                            numberOfLines={1}
+                            style={[
+                                !isFocused ? styles.tabLabel :
+                                    styles.activeTabLabel,
+                            ]}
+                        >
+                            {label}
+                        </Text>
+                        {/* </Animated.View> */}
                     </Pressable>
                 );
             })}
@@ -220,17 +220,18 @@ export default function MainNavigator() {
 
 const styles = StyleSheet.create({
     tabBarContainer: {
-        position: 'absolute',
-        left: 16,
-        right: 16,
-        height: 70,
+        // position: 'absolute',
+        // left: 16,
+        // right: 16,
+        height: 80,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.surface,
         borderRadius: 0,
-        borderTopRightRadius: 25,
-        borderBottomLeftRadius: 25,
+        // borderTopRightRadius: 25,
+        // borderBottomLeftRadius: 25,
         paddingHorizontal: 6,
+        // paddingVertical:5,
 
         shadowColor: '#10213F',
         shadowOffset: {
@@ -254,10 +255,10 @@ const styles = StyleSheet.create({
 
     tabContent: {
         minWidth: 60,
-        height: 48,
+        height: 36,
         paddingHorizontal: 8,
         borderRadius: 16,
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         gap: 3,
@@ -266,22 +267,21 @@ const styles = StyleSheet.create({
 
     activeTabContent: {
         backgroundColor: colors.primary,
-        minWidth: 74,
+        minWidth: 64,
         paddingHorizontal: 12,
-        borderRadius: 0,
-        borderBottomLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderRadius: 18,
     },
 
     tabLabel: {
-        fontSize: typography.fontSize.xs,
-        fontWeight: '600',
-        color: colors.textSecondary,
+        fontSize: 14,
+        fontFamily: fonts.bold,
+        color: colors.primaryLight,
     },
 
     activeTabLabel: {
-        color: colors.textOnPrimary,
-        fontSize: typography.fontSize.xs,
-        fontWeight: typography.fontWeight.bold,
+        fontSize: 14,
+        color: colors.primaryDark,
+        // fontSize: typography.fontSize.xs,
+        fontFamily: fonts.bold,
     },
 });

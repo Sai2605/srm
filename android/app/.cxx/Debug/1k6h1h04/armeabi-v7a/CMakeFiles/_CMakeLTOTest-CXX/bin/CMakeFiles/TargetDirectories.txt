@@ -1,0 +1,4 @@
+D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

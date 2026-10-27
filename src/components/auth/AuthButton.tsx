@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.textOnPrimary,
-    fontSize: typography.fontSize.md,
-    fontWeight:typography.fontWeight.bold,
+    // fontSize: typography.fontSize.md,
+    // fontWeight:typography.fontWeight.bold,
   },
   pressed: {
     opacity: 0.85,

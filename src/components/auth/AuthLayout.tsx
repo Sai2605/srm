@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
   },
   brandTitle: {
     color: colors.primaryDark,
-    fontSize: typography.fontSize.xxl,
-    fontWeight: typography.fontWeight.extraBold,
+    // fontSize: typography.fontSize.xxl,
+    // fontWeight: typography.fontWeight.extraBold,
     letterSpacing: 3,
   },
   brandSubtitle: {
     color: colors.textSecondary,
-    fontSize: typography.fontSize.xs,
+    // fontSize: typography.fontSize.xs,
     letterSpacing: 2,
     marginTop: spacing.xs,
   },
