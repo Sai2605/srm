@@ -1,6 +1,8 @@
 {
   "buildFiles": [
+    "D:\\git\\srm\\node_modules\\@maplibre\\maplibre-react-native\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\git\\srm\\node_modules\\@react-native-async-storage\\async-storage\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\git\\srm\\node_modules\\react-native-keychain\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\git\\srm\\node_modules\\react-native-safe-area-context\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\git\\srm\\node_modules\\react-native-screens\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\git\\srm\\node_modules\\react-native-svg\\android\\src\\main\\jni\\CMakeLists.txt",
@@ -21,6 +23,11 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
+    "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23": {
+      "artifactName": "react_codegen_MapLibreReactNativeSpec",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
+    },
     "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
       "artifactName": "react_codegen_safeareacontext",
       "abi": "arm64-v8a",
@@ -53,6 +60,11 @@
         "C:\\Users\\perfect\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\jsi\\libs\\android.arm64-v8a\\libjsi.so",
         "C:\\Users\\perfect\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\reactnative\\libs\\android.arm64-v8a\\libreactnative.so"
       ]
+    },
+    "react_codegen_RNKeychainSpec::@f9a2cb36ebca2de4baf9": {
+      "artifactName": "react_codegen_RNKeychainSpec",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
     },
     "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65": {
       "artifactName": "react_codegen_rnsvg",

@@ -21,6 +21,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import SwitchStudentScreen from './SwitchStudentScreen';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MainStackParamList } from '../../navigation/MainNavigator';
 
 const USE_MOCK_DATA = true;
 export default function Dashboard() {
@@ -201,7 +203,8 @@ function StudentSwitcher({ student, onPress }: { student: Student; onPress: () =
 
 function LiveTripCard({ trip }: { trip: Trip }) {
   const live = useLiveTrip(trip.id);
-
+  const navigation =
+    useNavigation<NativeStackNavigationProp<MainStackParamList>>();
   const d = USE_MOCK_DATA
     ? mockLiveTrip
     : live.data;
@@ -248,7 +251,7 @@ function LiveTripCard({ trip }: { trip: Trip }) {
           variant="accent"
           size="md"
           style={{ height: 44 }}
-        // onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })}
+          onPress={() => navigation.navigate('LiveTrip', { tripId: trip.id })}
         />
       </View>
     </View>

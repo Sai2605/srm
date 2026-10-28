@@ -6,6 +6,9 @@ import { AppText, Avatar, Button, Card, Chip, Icon, IconButton, type Tone } from
 import { formatDayShort, formatTime } from './../utils/format';
 import { addDays, toISODate } from './../utils/date';
 import type { Driver, LiveStop, LiveTrip, Trip, TripStatus, TripType, Vehicle } from './../types/models';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MainStackParamList } from '../navigation/MainNavigator';
 
 /* ---------- Labels ---------- */
 export const tripName = (type: TripType) => (type === 'pickup' ? 'Morning pickup' : 'Afternoon drop');
@@ -47,7 +50,7 @@ export function DateStrip({ value, onChange, days = 14 }: { value: string; onCha
             accessibilityState={{ selected: on }}
             accessibilityLabel={`${dow} ${num}${d === today ? ', today' : ''}`}
             onPress={() => onChange(d)}
-            style={[styles.day, on && { backgroundColor: colors.navy, borderColor: colors.navy}]}
+            style={[styles.day, on && { backgroundColor: colors.navy, borderColor: colors.navy }]}
           >
             <AppText variant="caption" color={on ? colors.textOnDark : colors.text}>{dow}</AppText>
             <AppText variant="h3" style={{ fontSize: 18 }} color={on ? colors.textOnDark : colors.text}>{num}</AppText>
@@ -85,6 +88,8 @@ export function TripCard({ trip }: { trip: Trip }) {
   const endTime = trip.actualEnd ?? trip.scheduledEnd;
   const est = trip.status === 'scheduled' || trip.status === 'in_progress';
   const absent = trip.status === 'absent';
+  const navigation =
+    useNavigation<NativeStackNavigationProp<MainStackParamList>>();
 
   return (
     <Card style={{ gap: spacing.md }}>
@@ -110,17 +115,17 @@ export function TripCard({ trip }: { trip: Trip }) {
           <DriverRow driver={trip.driver} vehicle={trip.vehicle} compact />
         </View>
         {trip.status === 'scheduled' && (
-          <Button label="Absent" size="sm" variant="secondary" 
+          <Button label="Absent" size="sm" variant="secondary"
           // onPress={() => router.push({ pathname: '/mark-absent', params: { date: trip.date, type: trip.type } })} 
           />
         )}
         <Button label="Chat" size="sm" variant="secondary"
         //  onPress={() => router.push({ pathname: '/chat/trip/[tripId]', params: { tripId: trip.id } })} 
-         />
+        />
         {trip.status === 'in_progress' && (
           <Button label="Track" size="sm" variant="accent"
-          //  onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })} 
-           />
+            onPress={() => navigation.navigate('LiveTrip', { tripId: trip.id })}
+          />
         )}
       </View>
     </Card>

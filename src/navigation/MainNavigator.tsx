@@ -39,6 +39,9 @@ import SettingsScreen from '../screens/settings/SettingsScreen';
 import ChatNavigator from './ChatNavigator';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import SettingsNavigator from './SettingsNavigator';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import LiveTripScreen from '../screens/trips/LiveTripScreen';
 
 export type MainTabParamList = {
     Home: undefined;
@@ -229,8 +232,7 @@ function CustomTabBar({
     );
 }
 
-
-export default function MainNavigator() {
+function MainTabNavigator() {
     return (
         <Tab.Navigator
             tabBar={(props) => <CustomTabBar {...props} />}
@@ -249,6 +251,32 @@ export default function MainNavigator() {
         </Tab.Navigator>
     );
 }
+
+export type MainStackParamList = {
+  MainTabs: undefined;
+  LiveTrip: { tripId: string };
+};
+
+const Stack = createNativeStackNavigator<MainStackParamList>();
+
+export default function MainNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MainTabs"
+        component={MainTabNavigator}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="LiveTrip"
+        component={LiveTripScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 
 const styles = StyleSheet.create({
     tabBarContainer: {

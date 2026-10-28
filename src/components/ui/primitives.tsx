@@ -42,7 +42,8 @@ import {
   SendHorizonal,
   SwitchCamera,
   Navigation,
-  X
+  X,
+  LocateFixed
 } from 'lucide-react-native';
 
 import {
@@ -116,7 +117,8 @@ export const iconMap = {
   SendHorizonal:SendHorizonal,
   SwitchCamera:SwitchCamera,
   Navigation:Navigation,
-  X:X
+  X:X,
+  LocateFixed:LocateFixed 
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof iconMap;
