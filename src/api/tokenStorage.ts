@@ -1,30 +1,54 @@
-import * as SecureStore from 'expo-secure-store';
-import type { AuthTokens } from '@/types/api';
+import * as Keychain from 'react-native-keychain';
+import type { AuthTokens } from './../types/api';
 
-const KEY = 'saferide.auth.tokens';
+const SERVICE = 'com.saferide.auth.tokens';
 
-/** In-memory copy so every request doesn't hit secure storage. */
 let cache: AuthTokens | null | undefined;
 
 export const tokenStorage = {
   async get(): Promise<AuthTokens | null> {
-    if (cache !== undefined) return cache;
-    try {
-      const raw = await SecureStore.getItemAsync(KEY);
-      cache = raw ? (JSON.parse(raw) as AuthTokens) : null;
-    } catch {
-      cache = null;
+    if (cache !== undefined) {
+      return cache;
     }
-    return cache;
+
+    try { 
+      const credentials = await Keychain.getGenericPassword({
+        service: SERVICE,
+      });
+
+      if (!credentials) {
+        cache = null;
+        return null;
+      }
+
+      const tokens: AuthTokens = JSON.parse(credentials.password);
+
+      cache = tokens;
+      return tokens;
+    } catch (error) {
+      console.error('Failed to retrieve tokens:', error);
+      cache = null;
+      return null;
+    }
   },
 
   async set(tokens: AuthTokens): Promise<void> {
+    await Keychain.setGenericPassword(
+      'auth',
+      JSON.stringify(tokens),
+      { service: SERVICE },
+    );
+
     cache = tokens;
-    await SecureStore.setItemAsync(KEY, JSON.stringify(tokens));
   },
 
   async clear(): Promise<void> {
-    cache = null;
-    await SecureStore.deleteItemAsync(KEY);
+    try {
+      await Keychain.resetGenericPassword({
+        service: SERVICE,
+      });
+    } finally {
+      cache = null;
+    }
   },
 };

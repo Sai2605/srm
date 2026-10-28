@@ -21,7 +21,7 @@ import type {
   PickupLocations,
   Student,
   Trip,
-} from '@/types/models';
+} from './../types/models';
 import type {
   AddGuardianRequest,
   CreatePaymentOrderRequest,
@@ -30,7 +30,7 @@ import type {
   UpdatePickupLocationsRequest,
   UpdateProfileRequest,
   VerifyOtpResponse,
-} from '@/types/api';
+} from './../types/api';
 
 export const authService = {
   sendOtp: (phone: string) => api.post<SendOtpResponse>(e.auth.sendOtp, { phone }, { auth: false }),

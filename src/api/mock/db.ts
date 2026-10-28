@@ -2,7 +2,7 @@
  * In-memory mock database. Only used when EXPO_PUBLIC_USE_MOCKS=true.
  * Safe to delete once the real backend is live (remove the import in client.ts).
  */
-import { addDays, atTime, toISODate, toLocalISO } from '@/utils/date';
+import { addDays, atTime, toISODate, toLocalISO } from './../../utils/date';
 import type {
   Absence,
   ChatMessage,
@@ -21,7 +21,7 @@ import type {
   TripStatus,
   TripType,
   Vehicle,
-} from '@/types/models';
+} from './../../types/models';
 
 export const MOCK_OTP = '123456';
 

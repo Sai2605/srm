@@ -35,6 +35,14 @@ import {
   MessageCircleMore,
   CreditCard,
   Sun,
+  UserRoundPlus,
+  Lock,
+  Volume2,
+  Phone,
+  SendHorizonal,
+  SwitchCamera,
+  Navigation,
+  X
 } from 'lucide-react-native';
 
 import {
@@ -101,7 +109,14 @@ export const iconMap = {
   MapPin:MapPin, 
   CircleAlert:CircleAlert,
   Sun:Sun,
-  
+  UserRoundPlus:UserRoundPlus,
+  Lock:Lock,
+  Volume2:Volume2,
+  Phone:Phone,
+  SendHorizonal:SendHorizonal,
+  SwitchCamera:SwitchCamera,
+  Navigation:Navigation,
+  X:X
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof iconMap;
@@ -363,7 +378,7 @@ const styles = StyleSheet.create({
     gap: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    // borderRadius: radius.pill,
+    borderRadius: radius.sm,
     alignSelf: 'flex-start',
   },
 

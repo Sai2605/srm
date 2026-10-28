@@ -12,6 +12,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/MapLibreReactNativeSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/*.cpp")
+set(OLD_GLOB
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/ComponentDescriptors.cpp"
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/EventEmitters.cpp"
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/Props.cpp"
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/ShadowNodes.cpp"
+  "D:/GitHub/srm/node_modules/@maplibre/maplibre-react-native/android/build/generated/source/codegen/jni/react/renderer/components/MapLibreReactNativeSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB
@@ -30,6 +54,30 @@ set(OLD_GLOB
   "D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/react/renderer/components/AsyncStorageSpec/Props.cpp"
   "D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/react/renderer/components/AsyncStorageSpec/ShadowNodes.cpp"
   "D:/GitHub/srm/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/react/renderer/components/AsyncStorageSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/RNKeychainSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/*.cpp")
+set(OLD_GLOB
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/ComponentDescriptors.cpp"
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/EventEmitters.cpp"
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/Props.cpp"
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/ShadowNodes.cpp"
+  "D:/GitHub/srm/node_modules/react-native-keychain/android/build/generated/source/codegen/jni/react/renderer/components/RNKeychainSpec/States.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

@@ -1,6 +1,6 @@
 /** Trip-related components used on Dashboard, Trips and Live Trip. */
 import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { router } from 'expo-router';
+// import { router } from 'expo-router';
 import { colors, fonts, radius, spacing } from './../theme';
 import { AppText, Avatar, Button, Card, Chip, Icon, IconButton, type Tone } from './../components/ui';
 import { formatDayShort, formatTime } from './../utils/format';
@@ -47,11 +47,11 @@ export function DateStrip({ value, onChange, days = 14 }: { value: string; onCha
             accessibilityState={{ selected: on }}
             accessibilityLabel={`${dow} ${num}${d === today ? ', today' : ''}`}
             onPress={() => onChange(d)}
-            style={[styles.day, on && { backgroundColor: colors.navy, borderColor: colors.navy }]}
+            style={[styles.day, on && { backgroundColor: colors.navy, borderColor: colors.navy}]}
           >
             <AppText variant="caption" color={on ? colors.textOnDark : colors.text}>{dow}</AppText>
             <AppText variant="h3" style={{ fontSize: 18 }} color={on ? colors.textOnDark : colors.text}>{num}</AppText>
-            <AppText style={{ fontSize: 9, fontFamily: fonts.bold, letterSpacing: 0.4 }} color={on ? colors.yellow : colors.textMuted}>
+            <AppText style={{ fontSize: 9, fontFamily: fonts.bold, letterSpacing: 1 }} color={on ? colors.yellow : colors.textMuted}>
               {d === today ? 'TODAY' : ' '}
             </AppText>
           </Pressable>
@@ -72,8 +72,8 @@ export function DriverRow({ driver, vehicle, compact, onChat, dark }: { driver: 
           {vehicle.label} · {vehicle.registrationNumber}
         </AppText>
       </View>
-      {onChat && <IconButton name="message-circle" label="Message driver" onPress={onChat} />}
-      {!compact && <IconButton name="phone" label="Call driver" variant="dark" onPress={() => Linking.openURL(`tel:${driver.phone}`)} />}
+      {onChat && <IconButton name='MessageCircleMore' label="Message driver" onPress={onChat} />}
+      {!compact && <IconButton name='search' label="Call driver" variant="dark" onPress={() => Linking.openURL(`tel:${driver.phone}`)} />}
     </View>
   );
 }
@@ -110,11 +110,17 @@ export function TripCard({ trip }: { trip: Trip }) {
           <DriverRow driver={trip.driver} vehicle={trip.vehicle} compact />
         </View>
         {trip.status === 'scheduled' && (
-          <Button label="Absent" size="sm" variant="secondary" onPress={() => router.push({ pathname: '/mark-absent', params: { date: trip.date, type: trip.type } })} />
+          <Button label="Absent" size="sm" variant="secondary" 
+          // onPress={() => router.push({ pathname: '/mark-absent', params: { date: trip.date, type: trip.type } })} 
+          />
         )}
-        <Button label="Chat" size="sm" variant="secondary" onPress={() => router.push({ pathname: '/chat/trip/[tripId]', params: { tripId: trip.id } })} />
+        <Button label="Chat" size="sm" variant="secondary"
+        //  onPress={() => router.push({ pathname: '/chat/trip/[tripId]', params: { tripId: trip.id } })} 
+         />
         {trip.status === 'in_progress' && (
-          <Button label="Track" size="sm" variant="accent" onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })} />
+          <Button label="Track" size="sm" variant="accent"
+          //  onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })} 
+           />
         )}
       </View>
     </Card>
@@ -139,21 +145,21 @@ export function TripRow({ trip, last }: { trip: Trip; last?: boolean }) {
   return (
     <Pressable
       accessibilityRole="button"
-      onPress={() =>
-        trip.status === 'in_progress'
-          ? router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })
-          : router.push('/trips')
-      }
+      // onPress={() =>
+      //   trip.status === 'in_progress'
+      //     ? router.push({ pathname: '/live-trip/[tripId]', params: { tripId: trip.id } })
+      //     : router.push('/trips')
+      // }
       style={[styles.tripRow, !last && { borderBottomWidth: 1, borderBottomColor: colors.divider }]}
     >
       <View style={[styles.tripIcon, { backgroundColor: trip.type === 'pickup' ? colors.yellowSoft : colors.infoBg }]}>
-        <Icon name={trip.type === 'pickup' ? 'sun' : 'home'} size={20} />
+        <Icon name={trip.type === 'pickup' ? 'Sun' : 'home'} size={20} />
       </View>
       <View style={{ flex: 1, gap: 2 }}>
         <AppText variant="bodyStrong">
           {trip.type === 'pickup' ? 'Pickup' : 'Drop'} · {formatTime(trip.scheduledStart)}
         </AppText>
-        <AppText variant="caption" color={colors.textMuted}>{trip.from.name} → {trip.to.name}</AppText>
+        <AppText variant="caption" color={colors.textMuted}>{trip?.from?.name} → {trip?.to?.name}</AppText>
       </View>
       <Chip label={chip.label} tone={chip.tone} />
     </Pressable>
@@ -207,9 +213,10 @@ export function StopTimeline({ stops }: { stops: LiveStop[] }) {
 
 const styles = StyleSheet.create({
   day: {
-    width: 52,
+    width: 60,
     alignItems: 'center',
     gap: 2,
+    // paddingHorizontal:20,
     paddingVertical: 8,
     borderRadius: radius.md,
     borderWidth: 1,

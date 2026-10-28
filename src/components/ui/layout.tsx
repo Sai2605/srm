@@ -90,7 +90,7 @@ export function BackHeader({ title, right, onBack }: { title?: string; right?: R
       <IconButton name='chevronLeft' label="Back"
         onPress={onBack ?? (() => navigation.goBack())}
       />
-      {title && <AppText variant="display" accessibilityRole="header" style={{ flex: 1 }}>{title}</AppText>}
+      {title && <AppText variant='h1' accessibilityRole="header" style={{ flex: 1 }}>{title}</AppText>}
       {right}
     </View>
   );
@@ -103,11 +103,11 @@ export function SheetHeader({ title, subtitle, onClose }: { title: string; subti
       <View style={styles.handle} />
       <View style={[styles.headerRow, { alignItems: 'flex-start' }]}>
         <View style={{ flex: 1, gap: 4 }}>
-          <AppText variant="display" accessibilityRole="header">{title}</AppText>
+          <AppText variant="h1" accessibilityRole="header">{title}</AppText>
           {subtitle && <AppText variant="small" color={colors.textMuted}>{subtitle}</AppText>}
         </View>
-        <IconButton name='chevronRight' label="Close" variant="soft"
-        //  onPress={onClose ?? (() => router.back())}
+        <IconButton name='X' label="Close" variant="soft"
+         onPress={onClose}
         />
       </View>
     </View>

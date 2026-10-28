@@ -1,9 +1,9 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { setUnauthorizedHandler } from '@/api/client';
-import { tokenStorage } from '@/api/tokenStorage';
-import { authService } from '@/api/services';
-import type { VerifyOtpResponse } from '@/types/api';
+import { setUnauthorizedHandler } from './../api/client';
+import { tokenStorage } from './../api/tokenStorage';
+import { authService } from './../api/services';
+import type { VerifyOtpResponse } from './../types/api';
 
 type Status = 'loading' | 'signedOut' | 'signedIn';
 

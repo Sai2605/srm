@@ -3,11 +3,11 @@
  * Caching, loading/error state, refetch and invalidation live here.
  */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { LIVE_POLL_MS } from '@/api/config';
-import { chatService, paymentService, profileService, studentService, tripService } from '@/api/services';
-import { toLocalISO } from '@/utils/date';
-import type { AbsenceRequest, ChatMessage, NotificationPrefs, Trip } from '@/types/models';
-import type { AddGuardianRequest, UpdatePickupLocationsRequest, UpdateProfileRequest } from '@/types/api';
+// import { LIVE_POLL_MS } from '@/api/config';
+import { chatService, paymentService, profileService, studentService, tripService } from './../api/services';
+import { toLocalISO } from './../utils/date';
+import type { AbsenceRequest, ChatMessage, NotificationPrefs, Trip } from './../types/models';
+import type { AddGuardianRequest, UpdatePickupLocationsRequest, UpdateProfileRequest } from './../types/api';
 
 export const qk = {
   me: ['me'] as const,
@@ -103,7 +103,7 @@ export const useLiveTrip = (tripId: string | undefined, enabled = true) =>
     queryKey: qk.live(tripId ?? ''),
     queryFn: () => tripService.live(tripId!),
     enabled: !!tripId && enabled,
-    refetchInterval: (q) => (q.state.data?.phase === 'reached' ? false : LIVE_POLL_MS),
+    refetchInterval: (q) => (q.state.data?.phase === 'reached' ? false : false),
     refetchIntervalInBackground: false,
   });
 

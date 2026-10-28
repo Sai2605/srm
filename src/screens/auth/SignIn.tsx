@@ -11,6 +11,7 @@ import {
   TextInput,
   View,
   ActivityIndicator,
+  useWindowDimensions
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { AuthStackParamList } from '../../types/auth.type';
@@ -39,7 +40,7 @@ export default function SignInScreen({ navigation }: Props) {
   const [countryCode] = useState('+91');
   const [phone, setPhone] = useState(''); // digits only
   const [loading, setLoading] = useState(false);
-
+  const { width, height } = useWindowDimensions()
   const onChangePhone = (text: string) =>
     setPhone(text.replace(/\D/g, '').slice(0, 10));
 
@@ -72,7 +73,7 @@ export default function SignInScreen({ navigation }: Props) {
         showsVerticalScrollIndicator={false}
       >
         {/* ───────── Header ───────── */}
-        <View style={styles.header}>
+        <View style={[styles.header, { height: height * 0.3 }]}>
           {/* Sun */}
           <View style={styles.sun} />
 
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
 
   /* Header */
   header: {
-    height: 250,
+    // height: 250,
     backgroundColor: C.yellow,
     borderBottomLeftRadius: 32,
     borderBottomRightRadius: 32,

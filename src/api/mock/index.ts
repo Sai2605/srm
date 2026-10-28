@@ -2,10 +2,10 @@
  * Tiny mock backend that answers the same paths as the real API.
  * Lets the whole app run end-to-end without a server.
  */
-import { toLocalISO, todayISO } from '@/utils/date';
+import { toLocalISO, todayISO } from './../../utils/date';
 import * as db from './db';
 import { ApiError } from '../errors';
-import type { LatLng, LivePhase, LiveTrip, StopState } from '@/types/models';
+import type { LatLng, LivePhase, LiveTrip, StopState } from './../../types/models';
 import type {
   AddGuardianRequest,
   CreatePaymentOrderRequest,
@@ -14,8 +14,8 @@ import type {
   UpdatePickupLocationsRequest,
   UpdateProfileRequest,
   VerifyOtpRequest,
-} from '@/types/api';
-import type { AbsenceRequest, NotificationPrefs } from '@/types/models';
+} from './../../types/api';
+import type { AbsenceRequest, NotificationPrefs } from './../../types/models';
 
 type Params = Record<string, string>;
 type Q = Record<string, unknown> | undefined;
@@ -188,7 +188,7 @@ function match(pattern: string, path: string): Params | null {
   return params;
 }
 
-const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
 
 export async function mockRequest<T>(method: string, path: string, query?: Q, body?: unknown): Promise<T> {
   await delay(250 + Math.random() * 350);

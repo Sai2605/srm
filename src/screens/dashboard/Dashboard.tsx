@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, View } from 'react-native';
 // import { router } from 'expo-router';
 import { useActiveStudent } from './../../store/ActiveStudentProvider';
 import { useLiveTrip, usePendingInvoices, useProfile, useTrips } from './../../hooks/queries';
@@ -18,9 +18,13 @@ import {
   mockProfile,
   mockLiveTrip,
 } from './../../data/mockStudents';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+import SwitchStudentScreen from './SwitchStudentScreen';
 
 const USE_MOCK_DATA = true;
 export default function Dashboard() {
+  const [showSwitchStudent, setShowSwitchStudent] = useState(false);
   // const today = todayISO();
   // const { activeStudent, isLoading: loadingStudents } = useActiveStudent();
   // const profile = useProfile();
@@ -101,8 +105,32 @@ export default function Dashboard() {
         <EmptyState icon="users" title="No students linked yet" message="Add your child using the student ID from school." />
       ) : (
         <>
-          <StudentSwitcher student={activeStudent} />
+          {/* <StudentSwitcher student={activeStudent} /> */}
+          <StudentSwitcher
+            student={activeStudent}
+            onPress={() => setShowSwitchStudent(true)}
+          />
 
+          <Modal
+            visible={showSwitchStudent}
+            animationType="slide"
+            transparent
+            statusBarTranslucent
+            onRequestClose={() => setShowSwitchStudent(false)}
+          >
+            <View style={styles.modalOverlay}>
+              <Pressable
+                style={StyleSheet.absoluteFill}
+                onPress={() => setShowSwitchStudent(false)}
+              />
+
+              <View style={styles.modalContent}>
+                <SwitchStudentScreen
+                  onClose={() => setShowSwitchStudent(false)}
+                />
+              </View>
+            </View>
+          </Modal>
           {activeTrip ? <LiveTripCard trip={activeTrip} /> : null}
 
           <QuickActions />
@@ -148,10 +176,11 @@ export default function Dashboard() {
   );
 }
 
-function StudentSwitcher({ student }: { student: Student }) {
+function StudentSwitcher({ student, onPress }: { student: Student; onPress: () => void; }) {
+  const navigation = useNavigation<any>();
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={`${student.name}. Switch student`}
-    // onPress={() => router.push('/switch-student')}
+      onPress={onPress}
     >
       <Card style={styles.switcher}>
         <Avatar name={student.name} bg={tintFor(student.id)} />
@@ -235,10 +264,11 @@ const ACTIONS: { label: string; icon: IconName; color: string; href: '/mark-abse
 
 function QuickActions() {
   return (
-    <View style={{ flexDirection: 'row', gap: 10 }} accessibilityLabel="Quick actions">
+    <View style={{ flexDirection: 'row', gap: 10, justifyContent: 'space-evenly' }} accessibilityLabel="Quick actions">
       {ACTIONS.map((a) => (
         <Pressable key={a.label} accessibilityRole="button"
-        // onPress={() => router.push(a.href)} style={({ pressed }) => [styles.action, pressed && { opacity: 0.8 }]}
+          // onPress={() => router.push(a.href)}
+          style={({ pressed }) => [styles.action, pressed && { opacity: 0.8 }]}
         >
           <Icon name={a.icon} size={22} color={a.color} />
           <AppText variant="caption" align="center" style={{ fontFamily: fonts.semibold }}>{a.label}</AppText>
@@ -269,4 +299,16 @@ const styles = StyleSheet.create({
   },
   overdue: { flexDirection: 'row', alignItems: 'center', gap: 10, padding: spacing.md, borderRadius: radius.md, backgroundColor: colors.warningBg },
   sectionHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  modalContent: {
+    maxHeight: '75%',
+    backgroundColor: colors.surface,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    overflow: 'hidden',
+  },
 });

@@ -20,6 +20,10 @@ import {
     Users,
     UserRound,
     type LucideIcon,
+    Calendar,
+    MessageCircle,
+    Settings,
+    CardSim,
 } from 'lucide-react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -27,30 +31,39 @@ import { colors, fonts, typography } from '../theme';
 
 import DashboardScreen from '../screens/dashboard/Dashboard';
 import TripsScreen from '../screens/trips/Trips';
-import StudentsScreen from '../screens/students/Students';
-import ProfileScreen from '../screens/profile/Profile';
+import StudentsScreen from '../screens/chat/ChatListScreen';
+import ProfileScreen from '../screens/settings/SettingsScreen';
+import PaymentsScreen from '../screens/payments/PaymentsScreen';
+import ChatListScreen from '../screens/chat/ChatListScreen';
+import SettingsScreen from '../screens/settings/SettingsScreen';
+import ChatNavigator from './ChatNavigator';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import SettingsNavigator from './SettingsNavigator';
 
 export type MainTabParamList = {
     Home: undefined;
     Trips: undefined;
-    Students: undefined;
-    Profile: undefined;
+    Chats: undefined;
+    Payments: undefined;
+    Settings: undefined;
 };
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const tabIcons: Record<string, LucideIcon> = {
     Home: House,
-    Trips: Route,
-    Students: Users,
-    Profile: UserRound,
+    Trips: Calendar,
+    Chats: MessageCircle,
+    Payments: CardSim,
+    Settings: Settings,
 };
 
 const tabLabels: Record<string, string> = {
     Home: 'Home',
     Trips: 'Trips',
-    Students: 'Students',
-    Profile: 'Profile',
+    Chats: 'Chats',
+    Payments: 'Payments',
+    Settings: 'Settings',
 };
 
 
@@ -60,6 +73,24 @@ function CustomTabBar({
     navigation,
 }: BottomTabBarProps) {
     const insets = useSafeAreaInsets();
+
+    const activeRoute = state.routes[state.index];
+
+    const nestedRouteName = getFocusedRouteNameFromRoute(activeRoute)
+
+
+    // Hide the custom bottom bar while a conversation is open
+    const hideTabBar =
+        (activeRoute.name === 'Chats' && nestedRouteName === 'Chat') ||
+        (activeRoute.name === 'Settings' &&
+            (nestedRouteName === 'EditSettings' || nestedRouteName === 'StudentsSettings' || nestedRouteName === 'LocationSettings'));
+
+
+    console.log('hide status', hideTabBar)
+
+    if (hideTabBar) {
+        return null;
+    }
 
     // Animate the selected tab's position in the tab list
     const indicatorPosition = useRef(
@@ -212,8 +243,9 @@ export default function MainNavigator() {
         >
             <Tab.Screen name="Home" component={DashboardScreen} />
             <Tab.Screen name="Trips" component={TripsScreen} />
-            <Tab.Screen name="Students" component={StudentsScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen name="Chats" component={ChatNavigator} />
+            <Tab.Screen name="Payments" component={PaymentsScreen} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
         </Tab.Navigator>
     );
 }

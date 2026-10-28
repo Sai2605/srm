@@ -44,7 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/cmake_install.cmake")
   include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/cmake_install.cmake")
+  include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/cmake_install.cmake")
   include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/safeareacontext_autolinked_build/cmake_install.cmake")
   include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/rnscreens_autolinked_build/cmake_install.cmake")
   include("D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/rnsvg_autolinked_build/cmake_install.cmake")
