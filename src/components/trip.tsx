@@ -27,6 +27,14 @@ export const phaseCopy: Record<LiveTrip['phase'], { chip: string; etaLabel: stri
   reached: { chip: 'Trip completed', etaLabel: 'Reached at' },
 };
 
+type TripCardProps = {
+  trip: Trip;
+  onMarkAbsent?: (params: {
+    date: string;
+    type: TripType;
+  }) => void;
+};
+
 /* ---------- Date strip ---------- */
 export function DateStrip({ value, onChange, days = 14 }: { value: string; onChange: (d: string) => void; days?: number }) {
   const today = toISODate(new Date());
@@ -76,13 +84,16 @@ export function DriverRow({ driver, vehicle, compact, onChat, dark }: { driver: 
         </AppText>
       </View>
       {onChat && <IconButton name='MessageCircleMore' label="Message driver" onPress={onChat} />}
-      {!compact && <IconButton name='search' label="Call driver" variant="dark" onPress={() => Linking.openURL(`tel:${driver.phone}`)} />}
+      {!compact && <IconButton name='Phone' label="Call driver" variant="dark" onPress={() => Linking.openURL(`tel:${driver.phone}`)} />}
     </View>
   );
 }
 
 /* ---------- Trip card (Trips list & dashboard) ---------- */
-export function TripCard({ trip }: { trip: Trip }) {
+export function TripCard({
+  trip,
+  onMarkAbsent,
+}: TripCardProps) {
   const chip = statusChip[trip.status];
   const startTime = trip.actualStart ?? trip.scheduledStart;
   const endTime = trip.actualEnd ?? trip.scheduledEnd;
@@ -116,7 +127,12 @@ export function TripCard({ trip }: { trip: Trip }) {
         </View>
         {trip.status === 'scheduled' && (
           <Button label="Absent" size="sm" variant="secondary"
-          // onPress={() => router.push({ pathname: '/mark-absent', params: { date: trip.date, type: trip.type } })} 
+            onPress={() =>
+              onMarkAbsent?.({
+                date: trip.date,
+                type: trip.type,
+              })
+            }
           />
         )}
         <Button label="Chat" size="sm" variant="secondary"

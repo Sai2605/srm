@@ -32,21 +32,16 @@ function App() {
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <View style={styles.container}>
-      {/* < 
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      /> */}
       <QueryProvider>
         <AuthProvider>
-        <NavigationContainer>
-          <ActiveStudentProvider>
-            <RootNavigator />
-          </ActiveStudentProvider>
-        </NavigationContainer>
+          <NavigationContainer>
+            <ActiveStudentProvider>
+              <RootNavigator />
+            </ActiveStudentProvider>
+          </NavigationContainer>
         </AuthProvider>
       </QueryProvider>
     </View>

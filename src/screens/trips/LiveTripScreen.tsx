@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
   recenter: {
     position: 'absolute',
     right: spacing.lg,
-    top: '42%',
+    bottom: '37%',
   },
   sheet: {
     position: 'absolute',

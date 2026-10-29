@@ -23,7 +23,7 @@ export default function SwitchStudentScreen({
 
   return (
     <ScrollView contentContainerStyle={{ padding: spacing.xl, gap: 18, backgroundColor: colors.surface }}>
-      <SheetHeader title="Switch student" />
+      <SheetHeader title="Switch student" onClose={onClose}/>
 
       <View style={{ gap: 10 }} accessibilityRole="radiogroup">
         {students.map((s) => (

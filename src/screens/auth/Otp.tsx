@@ -52,13 +52,13 @@ export default function OtpScreen() {
     <Screen keyboard gap={spacing.xxl + 4}>
       <BackHeader />
       <View style={{ gap: 10 }}>
-        <AppText variant="h1" accessibilityRole="header">Verify your number</AppText>
+        <AppText variant="h0" accessibilityRole="header">Verify your number</AppText>
         <AppText variant="body" color={colors.textMuted}>
           Enter the 6-digit code sent to{' '}
-          <AppText variant="body" style={{ fontFamily: fonts.bold }}>{}</AppText>.{' '}
+          <AppText variant="body" style={{ fontFamily: fonts.bold }}>{ }</AppText>.{' '}
           <AppText variant="body" style={{ fontFamily: fonts.bold }}
           //  onPress={() => router.back()}
-           >Edit</AppText>
+          >Edit</AppText>
         </AppText>
       </View>
 
@@ -71,7 +71,7 @@ export default function OtpScreen() {
             return (
               <View key={i} style={[styles.box, active && styles.boxActive
                 // , verify.isError
-               && styles.boxError]}>
+                && styles.boxError]}>
                 <AppText variant="display">{code[i] ?? ''}</AppText>
               </View>
             );
@@ -97,10 +97,10 @@ export default function OtpScreen() {
       </View>
 
       <Button label="Verify & continue"
-      //  onPress={() => verify.mutate(code)}
+        //  onPress={() => verify.mutate(code)}
         disabled={code.length !== LENGTH}
-        //  loading={verify.isPending}
-          />
+      //  loading={verify.isPending}
+      />
 
       <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 6 }}>
         <AppText variant="small" color={colors.textMuted}>Didn’t get it?</AppText>
@@ -109,7 +109,7 @@ export default function OtpScreen() {
         ) : (
           <AppText variant="small" style={{ fontFamily: fonts.bold }} accessibilityRole="button"
           //  onPress={() => resend.mutate()}
-           >
+          >
             {/* {resend.isPending ? 'Sending…' : 'Resend code'} */}
           </AppText>
         )}
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  boxActive: { borderWidth: 2, borderColor: colors.navy, shadowColor: colors.yellow, shadowOpacity: 0.6, shadowRadius: 4, shadowOffset: { width: 0, height: 0 },elevation:1 },
+  boxActive: { borderWidth: 2, borderColor: colors.navy, shadowColor: colors.yellow, shadowOpacity: 0.6, shadowRadius: 4, shadowOffset: { width: 0, height: 0 }, elevation: 1 },
   boxError: { borderColor: colors.danger },
   hidden: { position: 'absolute', opacity: 0, height: 1, width: 1 },
 });

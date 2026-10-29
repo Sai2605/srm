@@ -150,7 +150,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appmodules::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appmodules-Debug-a3598a10f6887a98c258.json",
+					"jsonFile" : "target-appmodules-Debug-5877dbc7e9378eecc9ce.json",
 					"name" : "appmodules",
 					"projectIndex" : 0
 				},
@@ -178,21 +178,21 @@
 				{
 					"directoryIndex" : 5,
 					"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad",
-					"jsonFile" : "target-react_codegen_rnscreens-Debug-d171e1baebb910a11683.json",
+					"jsonFile" : "target-react_codegen_rnscreens-Debug-d6dd18ea4f0d260f89bd.json",
 					"name" : "react_codegen_rnscreens",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 6,
 					"id" : "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65",
-					"jsonFile" : "target-react_codegen_rnsvg-Debug-b3b4c3c1893865ac2b08.json",
+					"jsonFile" : "target-react_codegen_rnsvg-Debug-4e027f2aaefc3e00e46e.json",
 					"name" : "react_codegen_rnsvg",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a",
-					"jsonFile" : "target-react_codegen_safeareacontext-Debug-a70fa634355172dc69cd.json",
+					"jsonFile" : "target-react_codegen_safeareacontext-Debug-0c9ab3fd0b84c0dfa53c.json",
 					"name" : "react_codegen_safeareacontext",
 					"projectIndex" : 0
 				}
@@ -202,7 +202,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64",
+		"build" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86",
 		"source" : "D:/GitHub/srm/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup"
 	},
 	"version" : 

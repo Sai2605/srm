@@ -15,20 +15,11 @@ import {
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { AuthStackParamList } from '../../types/auth.type';
+import { colors, spacing } from '../../theme';
+import { AppText } from '../../components/ui';
+import WaveSvg from '../../components/ui/WaveSvg';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
-
-const C = {
-  yellow: '#FFC42E',
-  sun: '#FFD97A',
-  road: 'rgba(170, 120, 10, 0.22)',
-  dash: 'rgba(255, 255, 255, 0.75)',
-  navy: '#14213D',
-  bg: '#F5F3EE',
-  muted: '#6B7280',
-  border: '#E5E1D8',
-  white: '#FFFFFF',
-};
 
 const DASH_COUNT = 28;
 
@@ -73,39 +64,44 @@ export default function SignInScreen({ navigation }: Props) {
         showsVerticalScrollIndicator={false}
       >
         {/* ───────── Header ───────── */}
-        <View style={[styles.header, { height: height * 0.3 }]}>
-          {/* Sun */}
-          <View style={styles.sun} />
+        <View style={[styles.header, { height: height * 0.35, paddingTop: height * 0.08 }]}>
 
+          <View style={styles.rowAlign}>
+
+            {/* Logo tile with bus icon */}
+            <View style={styles.logo}>
+              <View style={styles.busBody}>
+                <View style={styles.busWindow} />
+                <View style={styles.busLights}>
+                  <View style={styles.busLight} />
+                  <View style={styles.busLight} />
+                </View>
+              </View>
+            </View>
+            {/* Sun */}
+            <View style={styles.sun} />
+
+          </View>
           {/* Road (pure Views) */}
-          <View style={styles.road}>
+          {/* <View style={styles.road}>
             <View style={styles.dashRow}>
               {Array.from({ length: DASH_COUNT }).map((_, i) => (
                 <View key={i} style={styles.dash} />
               ))}
             </View>
-          </View>
-
-          {/* Logo tile with bus icon */}
-          <View style={styles.logo}>
-            <View style={styles.busBody}>
-              <View style={styles.busWindow} />
-              <View style={styles.busLights}>
-                <View style={styles.busLight} />
-                <View style={styles.busLight} />
-              </View>
-            </View>
-          </View>
+          </View> */}
+          <WaveSvg />
 
           <Text style={styles.headerLabel}>SafeRide · Parent</Text>
         </View>
 
         {/* ───────── Body ───────── */}
         <View style={styles.body}>
-          <Text style={styles.title}>Welcome, parent</Text>
-          <Text style={styles.subtitle}>
+          {/* <Text style={styles.title}>Welcome, parent</Text> */}
+          <AppText variant="h0" accessibilityRole="header">Welcome, parent</AppText>
+          <AppText variant='body' style={styles.subtitle}>
             Sign in with the mobile number registered with your child's school.
-          </Text>
+          </AppText>
 
           <Text style={styles.label}>Mobile number</Text>
           <View style={styles.phoneRow}>
@@ -138,7 +134,7 @@ export default function SignInScreen({ navigation }: Props) {
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator color={C.white} />
+              <ActivityIndicator color={colors.white} />
             ) : (
               <Text style={styles.buttonText}>Send OTP</Text>
             )}
@@ -163,58 +159,41 @@ export default function SignInScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: C.bg },
-  scroll: { flexGrow: 1, backgroundColor: C.bg },
+  flex: { flex: 1, backgroundColor: colors.bg },
+  scroll: { flexGrow: 1, backgroundColor: colors.bg },
 
   /* Header */
   header: {
     // height: 250,
-    backgroundColor: C.yellow,
+    backgroundColor: colors.primary,
     borderBottomLeftRadius: 32,
     borderBottomRightRadius: 32,
     overflow: 'hidden',
   },
   sun: {
-    position: 'absolute',
-    top: 60,
-    right: 40,
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    backgroundColor: C.sun,
-  },
-  road: {
-    position: 'absolute',
-    left: -40,
-    right: -40,
-    bottom: 56,
-    height: 44,
-    backgroundColor: C.road,
-    transform: [{ rotate: '-5deg' }],
-    justifyContent: 'center',
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#FFD97A',
   },
   dashRow: {
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
   },
-  dash: {
-    width: 14,
-    height: 2.5,
-    marginRight: 9,
-    borderRadius: 2,
-    backgroundColor: C.dash,
+  rowAlign: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.huge
   },
 
   /* Logo tile */
   logo: {
-    position: 'absolute',
-    top: 60,
-    left: 24,
-    width: 46,
-    height: 46,
+    width: 50,
+    height: 50,
     borderRadius: 12,
-    backgroundColor: C.navy,
+    backgroundColor: colors.primaryDark,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -223,7 +202,7 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 4,
     borderWidth: 1.8,
-    borderColor: C.yellow,
+    borderColor: colors.primary,
     alignItems: 'center',
     paddingTop: 2,
   },
@@ -232,7 +211,7 @@ const styles = StyleSheet.create({
     height: 5,
     borderRadius: 1,
     borderWidth: 1.4,
-    borderColor: C.yellow,
+    borderColor: colors.primary,
   },
   busLights: {
     flexDirection: 'row',
@@ -244,15 +223,15 @@ const styles = StyleSheet.create({
     width: 2.5,
     height: 2.5,
     borderRadius: 1.25,
-    backgroundColor: C.yellow,
+    backgroundColor: colors.primary,
   },
   headerLabel: {
     position: 'absolute',
     left: 24,
     bottom: 20,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '600',
-    color: C.navy,
+    color: colors.primaryDark,
   },
 
   /* Body */
@@ -263,20 +242,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '800',
-    color: C.navy,
+    color: colors.primaryDark,
   },
   subtitle: {
     marginTop: 6,
-    fontSize: 15,
     lineHeight: 21,
-    color: C.muted,
+    color: colors.primaryLight,
   },
   label: {
     marginTop: 24,
     marginBottom: 8,
     fontSize: 13,
     fontWeight: '700',
-    color: C.navy,
+    color: colors.primaryDark,
   },
   phoneRow: {
     flexDirection: 'row',
@@ -286,9 +264,9 @@ const styles = StyleSheet.create({
     width: 66,
     height: 48,
     borderRadius: 14,
-    backgroundColor: C.white,
+    backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: C.border,
+    borderColor: colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -297,14 +275,14 @@ const styles = StyleSheet.create({
   codeText: {
     fontSize: 15,
     fontWeight: '600',
-    color: C.navy,
+    color: colors.primaryDark,
   },
   chevron: {
     width: 7,
     height: 7,
     borderRightWidth: 1.6,
     borderBottomWidth: 1.6,
-    borderColor: C.navy,
+    borderColor: colors.primaryDark,
     transform: [{ rotate: '45deg' }, { translateY: -2 }],
   },
   phoneInput: {
@@ -312,31 +290,32 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 16,
     borderRadius: 14,
-    backgroundColor: C.white,
+    backgroundColor: colors.white,
     borderWidth: 1.5,
-    borderColor: C.navy,
+    borderColor: colors.primaryDark,
     fontSize: 17,
     fontWeight: '600',
     letterSpacing: 1,
-    color: C.navy,
+    color: colors.primaryDark,
   },
   helper: {
     marginTop: 8,
     fontSize: 11.5,
-    color: C.muted,
+    color: colors.primaryLight,
   },
   button: {
     marginTop: 24,
-    height: 48,
+    // height: 48,
+    paddingVertical: spacing.lg,
     borderRadius: 14,
-    backgroundColor: C.navy,
+    backgroundColor: colors.primaryDark,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonPressed: { opacity: 0.9 },
   buttonDisabled: { opacity: 0.7 },
   buttonText: {
-    color: C.white,
+    color: colors.white,
     fontSize: 15,
     fontWeight: '700',
   },
@@ -353,11 +332,11 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 11.5,
     lineHeight: 17,
-    color: C.muted,
+    color: colors.primaryLight,
     textAlign: 'center',
   },
   footerLink: {
-    color: C.navy,
+    color: colors.primaryDark,
     fontWeight: '600',
     textDecorationLine: 'underline',
   },

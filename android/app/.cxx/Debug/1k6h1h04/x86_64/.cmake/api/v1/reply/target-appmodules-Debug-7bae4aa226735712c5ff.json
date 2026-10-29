@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "D:/GitHub/srm/android/app/build/intermediates/cxx/Debug/1k6h1h04/obj/arm64-v8a/libappmodules.so"
+			"path" : "D:/GitHub/srm/android/app/build/intermediates/cxx/Debug/1k6h1h04/obj/x86_64/libappmodules.so"
 		}
 	],
 	"backtrace" : 3,
@@ -314,19 +314,11 @@
 	[
 		{
 			"backtrace" : 4,
-			"id" : "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23"
-		},
-		{
-			"backtrace" : 4,
-			"id" : "react_codegen_AsyncStorageSpec::@15af80695a6281ecf900"
-		},
-		{
-			"backtrace" : 4,
 			"id" : "react_codegen_RNKeychainSpec::@f9a2cb36ebca2de4baf9"
 		},
 		{
 			"backtrace" : 4,
-			"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a"
+			"id" : "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65"
 		},
 		{
 			"backtrace" : 4,
@@ -334,7 +326,15 @@
 		},
 		{
 			"backtrace" : 4,
-			"id" : "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65"
+			"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "react_codegen_AsyncStorageSpec::@15af80695a6281ecf900"
 		}
 	],
 	"id" : "appmodules::@6890427a1f51a3e7e1df",
@@ -348,32 +348,32 @@
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\arm64-v8a\\libreact_codegen_safeareacontext.so",
+				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\x86_64\\libreact_codegen_safeareacontext.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\arm64-v8a\\libreact_codegen_rnscreens.so",
+				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\x86_64\\libreact_codegen_rnscreens.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\arm64-v8a\\libreact_codegen_rnsvg.so",
+				"fragment" : "D:\\GitHub\\srm\\android\\app\\build\\intermediates\\cxx\\Debug\\1k6h1h04\\obj\\x86_64\\libreact_codegen_rnsvg.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 5,
-				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\3cb1792e16d0777e9535521c99f0b7b5\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.arm64-v8a\\libfbjni.so",
+				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\3cb1792e16d0777e9535521c99f0b7b5\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.x86_64\\libfbjni.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 5,
-				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\jsi\\libs\\android.arm64-v8a\\libjsi.so",
+				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\jsi\\libs\\android.x86_64\\libjsi.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 5,
-				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\reactnative\\libs\\android.arm64-v8a\\libreactnative.so",
+				"fragment" : "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\reactnative\\libs\\android.x86_64\\libreactnative.so",
 				"role" : "libraries"
 			},
 			{
@@ -446,109 +446,109 @@
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/MapLibreReactNativeSpec-generated.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/MapLibreReactNativeSpec-generated.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/ComponentDescriptors.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/ComponentDescriptors.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/EventEmitters.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/EventEmitters.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/Props.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/Props.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/ShadowNodes.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/ShadowNodes.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/States.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/MapLibreReactNativeSpec_autolinked_build/CMakeFiles/react_codegen_MapLibreReactNativeSpec.dir/react/renderer/components/MapLibreReactNativeSpec/States.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/AsyncStorageSpec-generated.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/AsyncStorageSpec-generated.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/ComponentDescriptors.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/ComponentDescriptors.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/EventEmitters.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/EventEmitters.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/Props.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/Props.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/ShadowNodes.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/ShadowNodes.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/States.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/AsyncStorageSpec_autolinked_build/CMakeFiles/react_codegen_AsyncStorageSpec.dir/react/renderer/components/AsyncStorageSpec/States.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/RNKeychainSpec-generated.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/RNKeychainSpec-generated.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/ComponentDescriptors.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/ComponentDescriptors.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/EventEmitters.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/EventEmitters.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/Props.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/Props.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/ShadowNodes.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/ShadowNodes.cpp.o",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"isGenerated" : true,
-			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/arm64-v8a/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/States.cpp.o",
+			"path" : "D:/GitHub/srm/android/app/.cxx/Debug/1k6h1h04/x86_64/RNKeychainSpec_autolinked_build/CMakeFiles/react_codegen_RNKeychainSpec.dir/react/renderer/components/RNKeychainSpec/States.cpp.o",
 			"sourceGroupIndex" : 1
 		}
 	],

@@ -9,23 +9,40 @@ import { DateStrip, TripCard } from './../../components/trip';
 import { formatMonthYear } from './../../utils/format';
 import { todayISO } from './../../utils/date';
 import { mockTrips } from '../../data/mockStudents';
+import MarkAbsentSheet from '../../modal/MarkAbsent';
+import { TripType } from '../../types/models';
 
 const USE_MOCK_DATA = true;
+type AbsenceParams = {
+  date?: string;
+  type?: TripType;
+};
 export default function TripsScreen() {
   const { activeStudent } = useActiveStudent();
-  console.log('sai',activeStudent)
+  console.log('sai', activeStudent)
   const [date, setDate] = useState(todayISO());
   // const trips = useTrips(activeStudent?.id, date);
-    const realTrips = useTrips(activeStudent?.id, date);
+  const realTrips = useTrips(activeStudent?.id, date);
   const trips = USE_MOCK_DATA
     ? {
-        data: mockTrips,
-        isLoading: false,
-        isError: false,
-        isRefetching: false,
-        refetch: async () => {},
-      }
+      data: mockTrips,
+      isLoading: false,
+      isError: false,
+      isRefetching: false,
+      refetch: async () => { },
+    }
     : realTrips;
+
+
+  const [absentVisible, setAbsentVisible] = useState(false);
+
+  const [absenceParams, setAbsenceParams] =
+    useState<AbsenceParams>({});
+
+  const openAbsentSheet = (params: AbsenceParams = {}) => {
+    setAbsenceParams(params);
+    setAbsentVisible(true);
+  };
 
   return (
     <Screen onRefresh={trips.refetch} refreshing={trips.isRefetching} gap={14}>
@@ -45,13 +62,21 @@ export default function TripsScreen() {
 
       {trips.isLoading ? (
         <LoadingState />
-      // ) : trips.isError ? (
-      //   <ErrorState message={errorMessage(trips.error)} onRetry={trips.refetch} />
+        // ) : trips.isError ? (
+        //   <ErrorState message={errorMessage(trips.error)} onRetry={trips.refetch} />
       ) : !trips.data?.length ? (
         <EmptyState icon='Calendar' title="No trips on this day" message="School holiday or weekend." />
       ) : (
-        trips.data.map((t) => <TripCard key={t.id} trip={t} />)
+        trips.data.map((t) => <TripCard key={t.id} trip={t} onMarkAbsent={openAbsentSheet}/>)
       )}
+
+      <MarkAbsentSheet
+        visible={absentVisible}
+        onClose={() => setAbsentVisible(false)}
+        date={absenceParams.date}
+        type={absenceParams.type}
+      />
+
     </Screen>
   );
 }

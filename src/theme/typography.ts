@@ -8,6 +8,7 @@ export const fonts = {
 
 export const typography = {
   display: { fontFamily: fonts.extraBold, fontSize: 38, lineHeight: 42, letterSpacing: -0.6 },
+  h0: { fontFamily: fonts.extraBold, fontSize: 28, lineHeight: 32, letterSpacing: -0.4 },
   h1: { fontFamily: fonts.extraBold, fontSize: 26, lineHeight: 32, letterSpacing: -0.4 },
   h2: { fontFamily: fonts.extraBold, fontSize: 20, lineHeight: 26 },
   h3: { fontFamily: fonts.extraBold, fontSize: 16, lineHeight: 22 },

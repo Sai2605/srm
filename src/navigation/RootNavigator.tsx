@@ -41,7 +41,7 @@ export default function RootNavigator() {
     );
   }
 
-  return !isAuthenticated ? <MainNavigator /> : <AuthNavigator />;
+  return isAuthenticated ? <MainNavigator /> : <AuthNavigator />;
 }
 
 const styles = StyleSheet.create({

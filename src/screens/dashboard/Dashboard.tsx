@@ -1,5 +1,4 @@
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
-// import { router } from 'expo-router';
 import { useActiveStudent } from './../../store/ActiveStudentProvider';
 import { useLiveTrip, usePendingInvoices, useProfile, useTrips } from './../../hooks/queries';
 // import { errorMessage } from '@/api/client';
@@ -10,7 +9,7 @@ import {
 import { DriverRow, StopProgress, TripRow, phaseCopy, tripName } from './../../components/trip';
 import { firstName, formatCurrency, formatDayLong, formatMonth, formatTime, greeting } from './../../utils/format';
 import { todayISO } from './../../utils/date';
-import type { LivePhase, Student, Trip } from './../../types/models';
+import type { LivePhase, Student, Trip, TripType } from './../../types/models';
 import {
   mockStudents,
   mockTrips,
@@ -23,10 +22,25 @@ import { useState } from 'react';
 import SwitchStudentScreen from './SwitchStudentScreen';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../../navigation/MainNavigator';
+import MarkAbsentSheet from '../../modal/MarkAbsent';
 
 const USE_MOCK_DATA = true;
+
+type AbsenceParams = {
+  date?: string;
+  type?: TripType;
+};
+
 export default function Dashboard() {
   const [showSwitchStudent, setShowSwitchStudent] = useState(false);
+  const [absentVisible, setAbsentVisible] = useState(false);
+  const [absenceParams, setAbsenceParams] =
+    useState<AbsenceParams>({});
+
+  const openAbsentSheet = (params: AbsenceParams = {}) => {
+    setAbsenceParams(params);
+    setAbsentVisible(true);
+  };
   // const today = todayISO();
   // const { activeStudent, isLoading: loadingStudents } = useActiveStudent();
   // const profile = useProfile();
@@ -135,7 +149,7 @@ export default function Dashboard() {
           </Modal>
           {activeTrip ? <LiveTripCard trip={activeTrip} /> : null}
 
-          <QuickActions />
+          <QuickActions onMarkAbsent={() => openAbsentSheet()} />
 
           {overdue && (
             <Pressable accessibilityRole="button"
@@ -174,6 +188,14 @@ export default function Dashboard() {
           </View>
         </>
       )}
+
+      <MarkAbsentSheet
+        visible={absentVisible}
+        onClose={() => setAbsentVisible(false)}
+        date={absenceParams.date}
+        type={absenceParams.type}
+      />
+
     </Screen>
   );
 }
@@ -258,23 +280,59 @@ function LiveTripCard({ trip }: { trip: Trip }) {
   );
 }
 
-const ACTIONS: { label: string; icon: IconName; color: string; href: '/mark-absent' | '/chats' | '/payments' | '/pickup-location' }[] = [
+const ACTIONS: { label: string; icon: IconName; color: string; href: '/mark-absent' | 'Chats' | 'Payments' | '/pickup-location' }[] = [
   { label: 'Mark absent', icon: 'UserRoundX', color: '#B4540A', href: '/mark-absent' },
-  { label: 'Message', icon: 'MessageCircleMore', color: '#2563A8', href: '/chats' },
-  { label: 'Pay fees', icon: 'CreditCard', color: '#1E7A4F', href: '/payments' },
+  { label: 'Message', icon: 'MessageCircleMore', color: '#2563A8', href: 'Chats' },
+  { label: 'Pay fees', icon: 'CreditCard', color: '#1E7A4F', href: 'Payments' },
   { label: 'Pickup point', icon: 'MapPin', color: colors.purple, href: '/pickup-location' },
 ];
 
-function QuickActions() {
+function QuickActions({
+  onMarkAbsent,
+}: {
+  onMarkAbsent: () => void;
+}) {
+  const navigation = useNavigation<any>();
+
   return (
-    <View style={{ flexDirection: 'row', gap: 10, justifyContent: 'space-evenly' }} accessibilityLabel="Quick actions">
-      {ACTIONS.map((a) => (
-        <Pressable key={a.label} accessibilityRole="button"
-          // onPress={() => router.push(a.href)}
-          style={({ pressed }) => [styles.action, pressed && { opacity: 0.8 }]}
+    <View
+      style={{
+        flexDirection: 'row',
+        gap: 10,
+        justifyContent: 'space-evenly',
+      }}
+      accessibilityLabel="Quick actions"
+    >
+      {ACTIONS.map((action) => (
+        <Pressable
+          key={action.label}
+          accessibilityRole="button"
+          onPress={() => {
+            if (action.label === 'Mark absent') {
+              onMarkAbsent();
+              return;
+            }
+
+            navigation.navigate(action.href);
+          }}
+          style={({ pressed }) => [
+            styles.action,
+            pressed && { opacity: 0.8 },
+          ]}
         >
-          <Icon name={a.icon} size={22} color={a.color} />
-          <AppText variant="caption" align="center" style={{ fontFamily: fonts.semibold }}>{a.label}</AppText>
+          <Icon
+            name={action.icon}
+            size={22}
+            color={action.color}
+          />
+
+          <AppText
+            variant="caption"
+            align="center"
+            style={{ fontFamily: fonts.semibold }}
+          >
+            {action.label}
+          </AppText>
         </Pressable>
       ))}
     </View>

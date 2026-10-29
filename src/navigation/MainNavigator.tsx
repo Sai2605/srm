@@ -42,6 +42,7 @@ import SettingsNavigator from './SettingsNavigator';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LiveTripScreen from '../screens/trips/LiveTripScreen';
+import MarkAbsentScreen from '../screens/trips/MarkAbsentScreen';
 
 export type MainTabParamList = {
     Home: undefined;
@@ -253,28 +254,35 @@ function MainTabNavigator() {
 }
 
 export type MainStackParamList = {
-  MainTabs: undefined;
-  LiveTrip: { tripId: string };
+    MainTabs: undefined;
+    LiveTrip: { tripId: string };
+    MarkAbsent: { date: string, type: string };
 };
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 export default function MainNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="MainTabs"
-        component={MainTabNavigator}
-        options={{ headerShown: false }}
-      />
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="MainTabs"
+                component={MainTabNavigator}
+                options={{ headerShown: false }}
+            />
 
-      <Stack.Screen
-        name="LiveTrip"
-        component={LiveTripScreen}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
-  );
+            <Stack.Screen
+                name="LiveTrip"
+                component={LiveTripScreen}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="MarkAbsent"
+                component={MarkAbsentScreen}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    );
 }
 
 
