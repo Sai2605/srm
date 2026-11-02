@@ -4,10 +4,13 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
 import { colors } from '../theme';
+import { useAuth } from '../store/AuthProvider';
+import { SplashView } from '../components/SplashView';
 
 export default function RootNavigator() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { status } = useAuth();
 
   useEffect(() => {
     const checkAuthSession = async () => {
@@ -33,15 +36,16 @@ export default function RootNavigator() {
     checkAuthSession();
   }, []);
 
-  if (isLoading) {
+  if (status === 'loading') {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
+      <SplashView/>
+      // <View style={styles.loadingContainer}>
+      //   <ActivityIndicator size="large" color={colors.primary} />
+      // </View>
     );
   }
 
-  return isAuthenticated ? <MainNavigator /> : <AuthNavigator />;
+  return status == 'signedIn' ? <MainNavigator /> : <AuthNavigator />;
 }
 
 const styles = StyleSheet.create({

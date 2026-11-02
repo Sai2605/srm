@@ -46,7 +46,7 @@ export default function SignInScreen({ navigation }: Props) {
       // Connect your "send OTP" API here, e.g.
       // await api.post('/auth/parent/send-otp', { phone: countryCode + phone });
       // navigation.navigate('VerifyOtp', { phone: countryCode + phone });
-      Alert.alert('API not connected', 'Connect your Express send-OTP endpoint here.');
+      // Alert.alert('API not connected', 'Connect your Express send-OTP endpoint here.');
     } finally {
       setLoading(false);
     }
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: colors.primaryLight,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, TextInput, View, type TextInputInstance } from '
 // import { authService } from '@/api/services';
 // import { errorMessage } from '@/api/client';
 // import { USE_MOCKS } from '@/api/config';
-// import { useAuth } from '@/store/AuthProvider';
+import { useAuth } from './../../store/AuthProvider';
 import { colors, fonts, radius, spacing } from './../../theme';
 import { AppText, BackHeader, Button, Screen } from './../../components/ui';
 import { formatPhone } from './../../utils/format';
@@ -14,7 +14,7 @@ const LENGTH = 6;
 
 export default function OtpScreen() {
   // const params = useLocalSearchParams<{ phone: string; requestId: string; resendIn?: string }>();
-  // const { signIn } = useAuth();
+  const { signIn } = useAuth();
   const inputRef = useRef<TextInputInstance>(null);
   const [code, setCode] = useState('');
   const [requestId, setRequestId] = useState();
@@ -98,8 +98,10 @@ export default function OtpScreen() {
 
       <Button label="Verify & continue"
         //  onPress={() => verify.mutate(code)}
-        disabled={code.length !== LENGTH}
+        onPress={() => signIn({ parent: 'a' as unknown as Parameters<typeof signIn>[0]['parent'], accessToken: 'test-token', refreshToken: 'test-token' })}
+      // disabled={code.length !== LENGTH}
       //  loading={verify.isPending}
+
       />
 
       <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 6 }}>
@@ -108,6 +110,7 @@ export default function OtpScreen() {
           <AppText variant="small" style={{ fontFamily: fonts.bold }}>Resend in 00:{String(seconds).padStart(2, '0')}</AppText>
         ) : (
           <AppText variant="small" style={{ fontFamily: fonts.bold }} accessibilityRole="button"
+          //  onPress={() => resend.mutate()}
           //  onPress={() => resend.mutate()}
           >
             {/* {resend.isPending ? 'Sending…' : 'Resend code'} */}
