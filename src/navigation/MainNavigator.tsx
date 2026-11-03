@@ -90,7 +90,7 @@ function CustomTabBar({
             (nestedRouteName === 'EditSettings' || nestedRouteName === 'StudentsSettings' || nestedRouteName === 'LocationSettings'));
 
 
-    console.log('hide status', hideTabBar)
+    // console.log('hide status', hideTabBar)
 
     if (hideTabBar) {
         return null;

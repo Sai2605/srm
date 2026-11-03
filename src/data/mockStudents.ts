@@ -17,9 +17,9 @@ export const mockStudents: Student[] = [
     id: 'STU002',
     name: 'Ananya Kumar',
     status: 'active',
-    grade: '',
-    section: '',
-    schoolName: '',
+    grade: '5',
+    section: 'A',
+    schoolName: 'Green Valley Public School',
     vehicleLabel: 'Van 5',
     pickupTime: '7:34',
     dropTime: '12:30'

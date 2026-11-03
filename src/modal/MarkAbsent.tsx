@@ -59,10 +59,6 @@ export default function MarkAbsentSheet({
 
     const today = toISODate(new Date());
     const tomorrow = toISODate(addDays(new Date(), 1));
-    useEffect(() => {
-
-        console.log('123')
-    }, [])
 
     const upcoming = useMemo(
         () =>

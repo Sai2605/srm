@@ -19,7 +19,7 @@ type AbsenceParams = {
 };
 export default function TripsScreen() {
   const { activeStudent } = useActiveStudent();
-  console.log('sai', activeStudent)
+  // console.log('sai', activeStudent)
   const [date, setDate] = useState(todayISO());
   // const trips = useTrips(activeStudent?.id, date);
   const realTrips = useTrips(activeStudent?.id, date);

@@ -314,10 +314,6 @@
 	[
 		{
 			"backtrace" : 4,
-			"id" : "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23"
-		},
-		{
-			"backtrace" : 4,
 			"id" : "react_codegen_AsyncStorageSpec::@15af80695a6281ecf900"
 		},
 		{
@@ -330,11 +326,15 @@
 		},
 		{
 			"backtrace" : 4,
+			"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a"
+		},
+		{
+			"backtrace" : 4,
 			"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad"
 		},
 		{
 			"backtrace" : 4,
-			"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a"
+			"id" : "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23"
 		}
 	],
 	"id" : "appmodules::@6890427a1f51a3e7e1df",

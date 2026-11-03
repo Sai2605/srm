@@ -50,24 +50,26 @@ export default function Dashboard() {
   const today = todayISO();
 
   const {
-    activeStudent: realStudent,
+    activeStudent,
     isLoading: loadingStudents,
   } = useActiveStudent();
 
+  
   const realProfile = useProfile();
-  const realTrips = useTrips(realStudent?.id, today);
-  const realInvoices = usePendingInvoices(realStudent?.id);
-
+  const realTrips = useTrips(activeStudent?.id, today);
+  const realInvoices = usePendingInvoices(activeStudent?.id);
+  
   // const activeStudent = USE_MOCK_DATA
   //   ? mockStudents
   //   : realStudent;
-
-  const activeStudent = USE_MOCK_DATA
-    ? mockStudents[0] ?? null
-    : Array.isArray(realStudent)
-      ? realStudent[0] ?? null
-      : realStudent;
-
+  
+  // const activeStudent = USE_MOCK_DATA
+  // ? mockStudents[0] ?? null
+  // : Array.isArray(realStudent)
+  // ? realStudent[0] ?? null
+  // : realStudent;
+  
+  // console.log('ActiveStudent',activeStudent)
   const profile = USE_MOCK_DATA
     ? { data: mockProfile }
     : realProfile;
