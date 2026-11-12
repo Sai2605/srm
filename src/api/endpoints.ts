@@ -5,12 +5,13 @@
 export const endpoints = {
   auth: {
     sendOtp: '/auth/otp/send',
-    verifyOtp: '/auth/otp/verify',
+    verifyOtp: '/auth/verify-otp',
     refresh: '/auth/refresh',
     logout: '/auth/logout',
   },
   me: {
-    profile: '/me',
+    profile: '/parent/read-parent-data',
+    updateProfile: '/parent/update-parent',
     notificationPrefs: '/me/notification-preferences',
   },
   students: {

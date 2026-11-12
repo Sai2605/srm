@@ -36,9 +36,9 @@ export default function RootNavigator() {
     checkAuthSession();
   }, []);
 
-  if (status === 'signedOut') {
+  if (status === 'loading') {
     return (
-      <SplashView/>
+      <SplashView />
       // <View style={styles.loadingContainer}>
       //   <ActivityIndicator size="large" color={colors.primary} />
       // </View>

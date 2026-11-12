@@ -72,9 +72,32 @@ export function formatRelative(iso: string): string {
 }
 
 /** '+919876543210' → '+91 98765 43210' */
-export function formatPhone(e164: string): string {
-  const m = e164.match(/^\+91(\d{5})(\d{5})$/);
-  return m ? `+91 ${m[1]} ${m[2]}` : e164;
+// export function formatPhone(e164: string): string {
+//   const m = e164.match(/^\+91(\d{5})(\d{5})$/);
+//   return m ? `+91 ${m[1]} ${m[2]}` : e164;
+// }
+
+
+export function formatPhone(
+  phone?: string | number | null,
+): string {
+  if (phone == null || phone === '') {
+    return '';
+  }
+
+  const digits = String(phone).replace(/\D/g, '');
+
+  if (!digits) {
+    return '';
+  }
+
+  const match = digits.match(/^(\d{5})(\d{5})$/);
+
+  if (match) {
+    return `${match[1]} ${match[2]}`;
+  }
+
+  return String(phone);
 }
 
 export function initials(name: string): string {

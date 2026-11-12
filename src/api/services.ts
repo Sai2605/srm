@@ -26,6 +26,8 @@ import type {
   AddGuardianRequest,
   CreatePaymentOrderRequest,
   LinkStudentRequest,
+  LogoutResponse,
+  ParentProfileResponse,
   SendOtpResponse,
   UpdatePickupLocationsRequest,
   UpdateProfileRequest,
@@ -34,14 +36,18 @@ import type {
 
 export const authService = {
   sendOtp: (phone: string) => api.post<SendOtpResponse>(e.auth.sendOtp, { phone }, { auth: false }),
-  verifyOtp: (requestId: string, phone: string, otp: string) =>
-    api.post<VerifyOtpResponse>(e.auth.verifyOtp, { requestId, phone, otp }, { auth: false }),
-  logout: () => api.post<void>(e.auth.logout),
+  verifyOtp: (phone: string, otp: string) =>
+    api.post<VerifyOtpResponse>(e.auth.verifyOtp, {
+      phone_number: Number(phone),
+      otp: Number(otp),
+    }, { auth: false }),
+  logout: () =>
+    api.post<LogoutResponse>(e.auth.logout),
 };
 
 export const profileService = {
-  get: () => api.get<Parent>(e.me.profile),
-  update: (body: UpdateProfileRequest) => api.patch<Parent>(e.me.profile, body),
+  get: () => api.post<ParentProfileResponse>(e.me.profile),
+  update: (body: UpdateProfileRequest) => api.post<Parent>(e.me.updateProfile, body),
   getPrefs: () => api.get<NotificationPrefs>(e.me.notificationPrefs),
   updatePrefs: (body: NotificationPrefs) => api.put<NotificationPrefs>(e.me.notificationPrefs, body),
 };

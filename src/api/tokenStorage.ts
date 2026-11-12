@@ -7,11 +7,9 @@ let cache: AuthTokens | null | undefined;
 
 export const tokenStorage = {
   async get(): Promise<AuthTokens | null> {
-    if (cache !== undefined) {
-      return cache;
-    }
+    if (cache !== undefined) return cache;
 
-    try { 
+    try {
       const credentials = await Keychain.getGenericPassword({
         service: SERVICE,
       });
@@ -21,12 +19,10 @@ export const tokenStorage = {
         return null;
       }
 
-      const tokens: AuthTokens = JSON.parse(credentials.password);
-
-      cache = tokens;
-      return tokens;
+      cache = JSON.parse(credentials.password) as AuthTokens;
+      return cache;
     } catch (error) {
-      console.error('Failed to retrieve tokens:', error);
+      console.error('Failed to retrieve token:', error);
       cache = null;
       return null;
     }
@@ -44,9 +40,7 @@ export const tokenStorage = {
 
   async clear(): Promise<void> {
     try {
-      await Keychain.resetGenericPassword({
-        service: SERVICE,
-      });
+      await Keychain.resetGenericPassword({ service: SERVICE });
     } finally {
       cache = null;
     }

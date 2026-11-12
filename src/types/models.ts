@@ -24,13 +24,13 @@ export interface Place {
 export type Relation = 'mother' | 'father' | 'guardian' | 'grandparent' | 'other';
 
 export interface Parent {
-  id: ID;
-  name: string;
-  phone: string; // E.164, e.g. +919876543210
-  altPhone?: string | null;
-  email?: string | null;
-  relation: Relation;
-  avatarUrl?: string | null;
+  parent_name: string | null;
+  phone_number: string;
+  alternate_mobile: string | null;
+  email: string | null;
+  relationship: string | null;
+  created_by: string | null;
+  parent_id: number;
 }
 
 export type StudentStatus = 'active' | 'pending_approval' | 'inactive';

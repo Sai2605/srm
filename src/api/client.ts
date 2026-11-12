@@ -1,137 +1,230 @@
+
 /**
  * Single HTTP client for the whole app.
- *  - adds the Bearer token
- *  - refreshes the token once on 401 (single-flight), then retries
- *  - normalises errors into ApiError
- *  - routes to the mock backend when EXPO_PUBLIC_USE_MOCKS=true
+ * - Adds the Bearer token to authenticated requests.
+ * - Handles expired JWT sessions (401).
+ * - Normalises errors into ApiError.
+ * - Routes to mock backend when USE_MOCKS=true.
  */
+
 import { API_URL, REQUEST_TIMEOUT_MS, USE_MOCKS } from './config';
-import { endpoints } from './endpoints';
 import { tokenStorage } from './tokenStorage';
 import { mockRequest } from './mock';
 import { ApiError } from './errors';
-import type { ApiErrorBody, AuthTokens } from '@/types/api';
+import type { ApiErrorBody } from './../types/api';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export type Query = Record<string, string | number | boolean | undefined | null>;
+
+export type Query = Record<
+  string,
+  string | number | boolean | undefined | null
+>;
 
 export interface RequestOptions {
   query?: Query;
   body?: unknown;
-  /** Set false for public endpoints (login). */
+  /** Set false for public endpoints (login / OTP). */
   auth?: boolean;
   signal?: AbortSignal;
 }
 
 export { ApiError, errorMessage } from './errors';
 
-/* ---- Session-expired hook (AuthProvider registers this) ---- */
+/* ---- Session-expired hook ---- */
+
 let onUnauthorized: (() => void) | null = null;
+
 export function setUnauthorizedHandler(fn: (() => void) | null) {
   onUnauthorized = fn;
 }
 
 /* ---- Helpers ---- */
+
 function buildUrl(path: string, query?: Query) {
   const qs = query
     ? Object.entries(query)
-        .filter(([, v]) => v !== undefined && v !== null && v !== '')
-        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
-        .join('&')
+      .filter(([, v]) => v !== undefined && v !== null && v !== '')
+      .map(
+        ([k, v]) =>
+          `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`,
+      )
+      .join('&')
     : '';
+
   return `${API_URL}${path}${qs ? `?${qs}` : ''}`;
 }
 
 async function parseError(res: Response): Promise<ApiError> {
   let body: ApiErrorBody = {};
+
   try {
     body = (await res.json()) as ApiErrorBody;
   } catch {
-    /* non-JSON error */
+    // Non-JSON error response.
   }
-  return new ApiError(res.status, body.message ?? `Request failed (${res.status})`, body.code);
+
+  return new ApiError(
+    res.status,
+    body.message ?? `Request failed (${res.status})`,
+    body.code,
+  );
 }
 
-let refreshing: Promise<AuthTokens | null> | null = null;
+/* ---- HTTP request ---- */
 
-async function refreshTokens(): Promise<AuthTokens | null> {
-  if (!refreshing) {
-    refreshing = (async () => {
-      const current = await tokenStorage.get();
-      if (!current?.refreshToken) return null;
-      try {
-        const res = await fetch(buildUrl(endpoints.auth.refresh), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ refreshToken: current.refreshToken }),
-        });
-        if (!res.ok) return null;
-        const next = (await res.json()) as AuthTokens;
-        await tokenStorage.set(next);
-        return next;
-      } catch {
-        return null;
-      }
-    })().finally(() => {
-      refreshing = null;
-    });
-  }
-  return refreshing;
-}
 
-async function rawFetch(method: HttpMethod, path: string, opts: RequestOptions, token?: string) {
+async function rawFetch(
+  method: HttpMethod,
+  path: string,
+  opts: RequestOptions,
+  token?: string,
+) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  opts.signal?.addEventListener('abort', () => controller.abort());
+
+  const timeout = setTimeout(
+    () => controller.abort(),
+    REQUEST_TIMEOUT_MS,
+  );
+
+  const abortRequest = () => controller.abort();
+  opts.signal?.addEventListener('abort', abortRequest);
 
   try {
+    const headers: Record<string, string> = {
+      Accept: 'application/json',
+    };
+
+    if (opts.body !== undefined) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    // Attach JWT to all authenticated HTTP methods.
+    if (opts.auth !== false && token) {
+      headers.token = token;
+    }
+
+    console.log('[REQUEST HEADERS]', {
+      method,
+      url: buildUrl(path, opts.query),
+      authorizationAttached: !!headers.Authorization,
+    });
+
     return await fetch(buildUrl(path, opts.query), {
       method,
-      headers: {
-        Accept: 'application/json',
-        ...(opts.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
-      body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,
+      headers,
+      body:
+        opts.body !== undefined
+          ? JSON.stringify(opts.body)
+          : undefined,
       signal: controller.signal,
     });
-  } catch (e) {
-    if ((e as Error).name === 'AbortError') throw new ApiError(0, 'Request timed out');
+  } catch (error) {
+    if ((error as Error).name === 'AbortError') {
+      throw new ApiError(0, 'Request timed out');
+    }
+
     throw new ApiError(0, 'No internet connection');
   } finally {
     clearTimeout(timeout);
+    opts.signal?.removeEventListener('abort', abortRequest);
   }
 }
 
-export async function request<T>(method: HttpMethod, path: string, opts: RequestOptions = {}): Promise<T> {
-  if (USE_MOCKS) return mockRequest<T>(method, path, opts.query, opts.body);
 
-  const needsAuth = opts.auth !== false;
-  let token = needsAuth ? (await tokenStorage.get())?.accessToken : undefined;
-  let res = await rawFetch(method, path, opts, token);
+/* ---- Main request function ---- */
 
-  if (res.status === 401 && needsAuth) {
-    const next = await refreshTokens();
-    if (next) {
-      token = next.accessToken;
-      res = await rawFetch(method, path, opts, token);
-    }
-    if (res.status === 401) {
-      await tokenStorage.clear();
-      onUnauthorized?.();
-      throw new ApiError(401, 'Your session has expired. Please log in again.');
-    }
+export async function request<T>(
+  method: HttpMethod,
+  path: string,
+  opts: RequestOptions = {},
+): Promise<T> {
+  if (USE_MOCKS) {
+    return mockRequest<T>(
+      method,
+      path,
+      opts.query,
+      opts.body,
+    );
   }
 
-  if (!res.ok) throw await parseError(res);
-  if (res.status === 204) return undefined as T;
+  const needsAuth = opts.auth !== false;
+
+  // const token = needsAuth
+  //   ? (await tokenStorage.get())?.accessToken
+  //   : undefined;
+
+  // const res = await rawFetch(
+  //   method,
+  //   path,
+  //   opts,
+  //   token,
+  // );
+
+  const token = needsAuth
+    ? (await tokenStorage.get())?.accessToken
+    : undefined;
+
+  console.log('========== API REQUEST ==========');
+  console.log('URL:', buildUrl(path, opts.query));
+  console.log('METHOD:', method);
+  console.log('AUTH REQUIRED:', needsAuth);
+  console.log('TOKEN PRESENT:', !!token);
+  console.log('TOKEN FORMAT VALID:', token?.split('.').length === 3);
+
+  const res = await rawFetch(method, path, opts, token);
+
+  console.log('========== API RESPONSE ==========');
+  console.log('STATUS:', res.status);
+  console.log('URL:', buildUrl(path, opts.query));
+
+  // Backend rejected the JWT.
+  if (res.status === 401 && needsAuth) {
+    const error = await parseError(res);
+
+    await tokenStorage.clear();
+    onUnauthorized?.();
+
+    throw error;
+  }
+
+  if (!res.ok) {
+    throw await parseError(res);
+  }
+
+  if (res.status === 204) {
+    return undefined as T;
+  }
+
   return (await res.json()) as T;
 }
 
+/* ---- API methods ---- */
+
 export const api = {
-  get: <T>(path: string, opts?: RequestOptions) => request<T>('GET', path, opts),
-  post: <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>('POST', path, { ...opts, body }),
-  put: <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>('PUT', path, { ...opts, body }),
-  patch: <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>('PATCH', path, { ...opts, body }),
-  delete: <T>(path: string, opts?: RequestOptions) => request<T>('DELETE', path, opts),
+  get: <T>(path: string, opts?: RequestOptions) =>
+    request<T>('GET', path, opts),
+
+  post: <T>(
+    path: string,
+    body?: unknown,
+    opts?: RequestOptions,
+  ) =>
+    request<T>('POST', path, { ...opts, body }),
+
+  put: <T>(
+    path: string,
+    body?: unknown,
+    opts?: RequestOptions,
+  ) =>
+    request<T>('PUT', path, { ...opts, body }),
+
+  patch: <T>(
+    path: string,
+    body?: unknown,
+    opts?: RequestOptions,
+  ) =>
+    request<T>('PATCH', path, { ...opts, body }),
+
+  delete: <T>(path: string, opts?: RequestOptions) =>
+    request<T>('DELETE', path, opts),
 };

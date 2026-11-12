@@ -18,8 +18,9 @@ const RELATIONS: { value: Relation; label: string }[] = [
 const isEmail = (s: string) => !s || /^\S+@\S+\.\S+$/.test(s);
 
 export default function EditProfileScreen() {
-  const { data: parent, isLoading } = useProfile();
+  const { data: parent, isLoading, refetch } = useProfile();
   const update = useUpdateProfile();
+
 
   const [name, setName] = useState('');
   const [altPhone, setAltPhone] = useState('');
@@ -29,20 +30,49 @@ export default function EditProfileScreen() {
 
   useEffect(() => {
     if (!parent) return;
-    setName(parent.name);
-    setAltPhone(parent.altPhone ?? '');
-    setEmail(parent.email ?? '');
-    setRelation(parent.relation);
+    setName(parent?.result?.[0]?.parent_name ?? '');
+    setAltPhone(parent?.result?.[0]?.alternate_mobile ?? '');
+    setEmail(parent?.result?.[0]?.email ?? '');
+    setRelation(RELATIONS.find((r) => r.value === parent?.result?.[0]?.relationship)?.value ?? 'mother');
   }, [parent]);
 
   const emailError = isEmail(email) ? null : 'Enter a valid email';
   const canSave = name.trim().length > 1 && !emailError;
 
-  const save = () =>
+  const save = () => {
+    if (!parent?.result?.[0]?.parent_id) {
+      Alert.alert('Error', 'Parent ID not found');
+      return;
+    }
+
     update.mutate(
-      { name: name.trim(), altPhone: altPhone.trim() || null, email: email.trim() || null, relation },
-      { onSuccess: () => navigation.goBack(), onError: (e) => Alert.alert('Couldn’t save', errorMessage(e)) },
+      {
+        parent_id: parent?.result?.[0]?.parent_id,
+        parent_name: name.trim(),
+        alternate_mobile: altPhone.trim() || null,
+        email: email.trim() || null,
+        relationship: relation,
+        phone_number: Number(parent?.result?.[0]?.phone_number)
+      },
+      {
+        onSuccess: async () => {
+          try {
+            // Fetch updated parent details
+            await refetch();
+
+            // Return to Settings screen
+            navigation.goBack();
+          } catch (error) {
+            console.log('Profile refresh failed:', error);
+            navigation.goBack();
+          }
+        },
+        onError: (error) => {
+          Alert.alert("Couldn't save", errorMessage(error));
+        },
+      },
     );
+  };
 
   if (isLoading || !parent) return <Screen><LoadingState /></Screen>;
 
@@ -52,7 +82,7 @@ export default function EditProfileScreen() {
 
       <View style={{ alignItems: 'center' }}>
         <View>
-          <Avatar name={name || parent.name} size={88} bg={colors.yellow} />
+          <Avatar name={name || parent?.result?.[0]?.parent_name || ''} size={88} bg={colors.yellow} />
           {/* TODO: expo-image-picker → upload → PATCH /me { avatarUrl } */}
           <View style={{ position: 'absolute', right: -4, bottom: -4 }}>
             <IconButton name='SwitchCamera' label="Change photo" variant="dark" size={38} />
@@ -64,7 +94,7 @@ export default function EditProfileScreen() {
 
       <TextField
         label="Mobile number"
-        value={formatPhone(parent.phone)}
+        value={formatPhone(parent.result?.[0]?.phone_number)}
         editable={false}
         right={
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -75,7 +105,7 @@ export default function EditProfileScreen() {
         hint="Changing your login number needs a new OTP."
       />
 
-      <TextField label="Alternate mobile (driver can call)" value={altPhone} onChangeText={setAltPhone} keyboardType="phone-pad" placeholder="+91" />
+      <TextField label="Alternate mobile (driver can call)" value={altPhone} onChangeText={setAltPhone} keyboardType="phone-pad" placeholder="+91" maxLength={10}/>
       <TextField
         label="Email (for receipts)"
         value={email}

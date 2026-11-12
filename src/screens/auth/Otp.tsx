@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View, type TextInputInstance } from 'react-native';
+import { Pressable, StyleSheet, TextInput, ToastAndroid, View, type TextInputInstance } from 'react-native';
 // import { router, useLocalSearchParams } from 'expo-router';
 // import { useMutation } from '@tanstack/react-query';
 // import { authService } from '@/api/services';
@@ -9,12 +9,19 @@ import { useAuth } from './../../store/AuthProvider';
 import { colors, fonts, radius, spacing } from './../../theme';
 import { AppText, BackHeader, Button, Screen } from './../../components/ui';
 import { formatPhone } from './../../utils/format';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../../types/auth.type';
+import { useMutation } from '@tanstack/react-query';
+import { authService } from '../../api/services';
+
+
+type Props = NativeStackScreenProps<AuthStackParamList, 'OTP'>
 
 const LENGTH = 6;
 
-export default function OtpScreen() {
-  // const params = useLocalSearchParams<{ phone: string; requestId: string; resendIn?: string }>();
+export default function OtpScreen({ navigation, route }: Props) {
   const { signIn } = useAuth();
+  const phone = route.params.identifier;
   const inputRef = useRef<TextInputInstance>(null);
   const [code, setCode] = useState('');
   const [requestId, setRequestId] = useState();
@@ -26,13 +33,28 @@ export default function OtpScreen() {
     return () => clearTimeout(t);
   }, [seconds]);
 
-  // const verify = useMutation({
-  //   mutationFn: (otp: string) => authService.verifyOtp(requestId, params.phone, otp),
-  //   onSuccess: async (res) => {
-  //     await signIn(res); // Stack.Protected then swaps to the app
-  //   },
-  //   onError: () => setCode(''),
-  // });
+  const verify = useMutation({
+    mutationFn: async (otp: string) => {
+      console.log('Verify OTP API called');
+      console.log('Phone:', phone);
+      console.log('OTP:', otp);
+
+      return authService.verifyOtp(phone, otp);
+    },
+
+    onSuccess: async (res) => {
+      console.log('OTP verification success:', res);
+      ToastAndroid.show(res.message, ToastAndroid.BOTTOM)
+      await signIn(res);
+    },
+
+    onError: (error) => {
+      console.log('OTP verification failed:', error);
+
+      setCode('');
+      inputRef.current?.focus();
+    },
+  });
 
   // const resend = useMutation({
   //   mutationFn: () => authService.sendOtp(params.phone),
@@ -97,11 +119,10 @@ export default function OtpScreen() {
       </View>
 
       <Button label="Verify & continue"
-        //  onPress={() => verify.mutate(code)}
-        onPress={() => signIn({ parent: 'a' as unknown as Parameters<typeof signIn>[0]['parent'], accessToken: 'test-token', refreshToken: 'test-token' })}
+        onPress={() => verify.mutate(code)}
+      // onPress={() => signIn({ parent: 'a' as unknown as Parameters<typeof signIn>[0]['parent'], accessToken: 'test-token', refreshToken: 'test-token' })}
       // disabled={code.length !== LENGTH}
       //  loading={verify.isPending}
-
       />
 
       <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 6 }}>

@@ -22,12 +22,13 @@ export default function SettingsScreen() {
   const { signOut } = useAuth();
   const { students, activeStudent } = useActiveStudent();
   const profile = useProfile();
+  console.log('read-parent-data', profile.data?.result?.[0])
   // const pickup = usePickupLocations(activeStudent?.id);
   const pickup = MOCK_PICKUP_LOCATIONS;
   const prefs = useNotificationPrefs();
   const updatePrefs = useUpdateNotificationPrefs();
   const navigation =
-    useNavigation<NativeStackNavigationProp<SettingsStackParamList>>(); const p = profile.data;
+    useNavigation<NativeStackNavigationProp<SettingsStackParamList>>(); const p = profile.data?.result?.[0];
 
   return (
     <Screen>
@@ -37,12 +38,13 @@ export default function SettingsScreen() {
         onPress={() => navigation.navigate('EditSettings')}
       >
         <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-          <Avatar name={p?.name ?? '?'} size={56} bg={colors.yellow} />
+          <Avatar name={p?.parent_name ?? '?'} size={56} bg={colors.yellow} />
           <View style={{ flex: 1, gap: 2 }}>
-            <AppText variant="h3" style={{ fontSize: 17 }}>{p?.name ?? '—'}</AppText>
+            <AppText variant="h3" style={{ fontSize: 17 }}>{p?.parent_name ?? '—'}</AppText>
             <AppText variant="small" color={colors.textMuted}>
-              {p ? `${formatPhone(p.phone)} · ${relationLabel(p.relation)}` : ''}
-            </AppText>
+              {p
+                ? `${p.phone_number ? formatPhone(p.phone_number) : 'Phone number unavailable'} · ${p.relationship ? relationLabel(p.relationship as Parameters<typeof relationLabel>[0]) : ''}`
+                : ''}            </AppText>
           </View>
           <View style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: radius.sm, backgroundColor: colors.bg }}>
             <AppText variant="small" style={{ fontFamily: fonts.bold }}>Edit</AppText>

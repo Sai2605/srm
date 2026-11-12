@@ -11,16 +11,17 @@ export interface SendOtpResponse {
 }
 
 export interface VerifyOtpRequest {
-  requestId: string;
-  phone: string;
+  phone_number: string;
   otp: string;
 }
 export interface AuthTokens {
   accessToken: string;
-  refreshToken: string;
+  // refreshToken: string;
 }
 export interface VerifyOtpResponse extends AuthTokens {
-  parent: Parent;
+  status:string;
+  message:string;
+  token:string;
 }
 
 export interface RefreshRequest {
@@ -28,11 +29,20 @@ export interface RefreshRequest {
 }
 
 export interface UpdateProfileRequest {
-  name?: string;
-  altPhone?: string | null;
+  parent_id: number;
+  parent_name?: string;
+  alternate_mobile?: string | null;
   email?: string | null;
-  relation?: Relation;
+  relationship?: string;
+  phone_number?:number
 }
+
+export interface ParentProfileResponse {
+  status: string;
+  message: string;
+  result: Parent[];
+}
+
 
 export interface LinkStudentRequest {
   studentCode: string; // ID issued by school
@@ -63,4 +73,9 @@ export interface UpdatePickupLocationsRequest {
 export interface ApiErrorBody {
   code?: string;
   message?: string;
+}
+
+export interface LogoutResponse {
+  status: string;
+  message: string;
 }

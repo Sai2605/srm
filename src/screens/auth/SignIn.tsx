@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -10,6 +11,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -18,6 +20,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { AuthStackParamList } from '../../types/auth.type';
 import Logo from './../../assets/images/Logo1.png';
 import { AppText } from '../../components/ui';
+import { api } from '../../api/client';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignIn'>;
 
@@ -121,14 +124,18 @@ export default function SignInScreen({ navigation }: Props) {
     setPhone(text.replace(/\D/g, '').slice(0, 10));
 
   const sendOtp = async () => {
-    // if (phone.length !== 10) {
-    //   Alert.alert('Required', 'Enter a valid 10-digit mobile number.');
-    //   return;
-    // }
-    navigation.navigate('OTP');
+    if (phone.length !== 10) {
+      ToastAndroid.show('Enter a valid number', ToastAndroid.BOTTOM)
+      return;
+    }
     setLoading(true);
     try {
-      // await api.post('/auth/parent/send-otp', { phone: countryCode + phone });
+      const res = await api.post('/auth/request-otp', { phone_number: phone }, { auth: false });
+      console.log('sign in',res)
+      navigation.navigate('OTP', {
+        identifier: phone,
+        purpose: 'signup',
+      });
     } finally {
       setLoading(false);
     }
@@ -157,7 +164,7 @@ export default function SignInScreen({ navigation }: Props) {
           <AppText variant='h0' style={styles.head}>
             Kid2Campus
           </AppText>
-          <AppText variant='h1' style={styles.headline}>
+          <AppText variant='h2' style={styles.headline}>
             Your child’s school ride,{'\n'}tracked live.
           </AppText>
 
