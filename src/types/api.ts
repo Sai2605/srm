@@ -19,9 +19,9 @@ export interface AuthTokens {
   // refreshToken: string;
 }
 export interface VerifyOtpResponse extends AuthTokens {
-  status:string;
-  message:string;
-  token:string;
+  status: string;
+  message: string;
+  token: string;
 }
 
 export interface RefreshRequest {
@@ -34,7 +34,7 @@ export interface UpdateProfileRequest {
   alternate_mobile?: string | null;
   email?: string | null;
   relationship?: string;
-  phone_number?:number
+  phone_number?: number
 }
 
 export interface ParentProfileResponse {
@@ -78,4 +78,21 @@ export interface ApiErrorBody {
 export interface LogoutResponse {
   status: string;
   message: string;
+}
+
+export interface AllStudentDataItem {
+  student_id: number;
+  student_name: string;
+  class: string | null;
+  schoolname: string | null;
+  pickup_person: string | null;
+  morning_pickup_time: string | null;
+  evening_pickup_time: string | null;
+  is_primary: 0 | 1;
+}
+
+export interface AllStudentDataResponse {
+  status: 'success' | 'error';
+  message: string;
+  result: AllStudentDataItem[];
 }

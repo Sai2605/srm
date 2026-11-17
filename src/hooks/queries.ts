@@ -111,7 +111,7 @@ export function useMarkAbsent() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (body: AbsenceRequest) => tripService.markAbsent(body),
-    onSuccess: (_d, body) => qc.invalidateQueries({ queryKey: qk.tripsAll(body.studentId) }),
+    onSuccess: (_d, body) => qc.invalidateQueries({ queryKey: qk.tripsAll(String(body.student_id)) }),
   });
 }
 

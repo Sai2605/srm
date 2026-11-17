@@ -15,11 +15,11 @@ export const endpoints = {
     notificationPrefs: '/me/notification-preferences',
   },
   students: {
-    list: '/students',
+    list: '/student/read-all-student-data',
     link: '/students/link',
     guardians: (studentId: string) => `/students/${studentId}/guardians`,
     trips: (studentId: string) => `/students/${studentId}/trips`,
-    absences: (studentId: string) => `/students/${studentId}/absences`,
+    absences: () => `/student/mark-absent`,
     pickupLocations: (studentId: string) => `/students/${studentId}/pickup-locations`,
     invoices: (studentId: string) => `/students/${studentId}/invoices`,
     payments: (studentId: string) => `/students/${studentId}/payments`,

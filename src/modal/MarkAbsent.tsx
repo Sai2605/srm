@@ -7,6 +7,7 @@ import {
     Platform,
     Pressable,
     ScrollView,
+    ToastAndroid,
     View,
 } from 'react-native';
 
@@ -121,20 +122,20 @@ export default function MarkAbsentSheet({
 
         markAbsent.mutate(
             {
-                studentId: activeStudent.id,
-                dates,
-                tripTypes: types,
+                student_id: Number(activeStudent.id),
+                absent_date: dates[0],
+                // trip_type: types[0],
+                morning_pickup_absent: types.includes('pickup'),
+                evening_pickup_absent: types.includes('drop'),
                 reason,
-                note: note.trim() || undefined,
+                remark: note.trim() || null,
             },
             {
-                onSuccess: () => {
+                onSuccess: (response) => {
+                    // console.log('mark-MarkAbsentSheet',response)
                     onClose();
 
-                    Alert.alert(
-                        'Absence sent',
-                        'The driver and transport desk have been notified.',
-                    );
+                    ToastAndroid.show(response.message, ToastAndroid.BOTTOM)
                 },
                 onError: (error) => {
                     Alert.alert(
@@ -237,7 +238,7 @@ export default function MarkAbsentSheet({
                                         <View style={{ flex: 1 }}>
                                             <AppText variant="bodyStrong">{tripName(t)}</AppText>
                                             <AppText variant="caption" color={colors.textMuted}>
-                                                {t === 'pickup' ? `Home → School · ${formatClock(activeStudent?.pickupTime)}` : `School → Home · ${formatClock(activeStudent?.dropTime)}`}
+                                                {t === 'pickup' ? `Home → School · ${formatClock(activeStudent?.morningPickupTime)}` : `School → Home · ${formatClock(activeStudent?.eveningPickupTime)}`}
                                             </AppText>
                                         </View>
                                     </SelectRow>

@@ -35,17 +35,28 @@ export interface Parent {
 
 export type StudentStatus = 'active' | 'pending_approval' | 'inactive';
 
+// export interface Student {
+//   id: ID;
+//   name: string;
+//   grade: string; // "4"
+//   section: string; // "B"
+//   schoolName: string;
+//   avatarUrl?: string | null;
+//   vehicleLabel: string | null; // "Van 3"
+//   pickupTime: string | null; // "07:35" (24h, local)
+//   dropTime: string | null; // "15:20"
+//   status: StudentStatus;
+// }
 export interface Student {
-  id: ID;
+  id: string;
   name: string;
-  grade: string; // "4"
-  section: string; // "B"
-  schoolName: string;
-  avatarUrl?: string | null;
-  vehicleLabel: string | null; // "Van 3"
-  pickupTime: string | null; // "07:35" (24h, local)
-  dropTime: string | null; // "15:20"
-  status: StudentStatus;
+  isPrimary: boolean;
+
+  class: string | null;
+  schoolName: string | null;
+  pickupPerson: string | null;
+  morningPickupTime: string | null;
+  eveningPickupTime: string | null;
 }
 
 export interface Guardian {
@@ -123,16 +134,23 @@ export interface LiveTrip {
 }
 
 export interface AbsenceRequest {
-  studentId: ID;
-  dates: ISODate[];
-  tripTypes: TripType[];
-  reason?: string;
-  note?: string;
+  student_id: number;
+  absent_date: string;
+  morning_pickup_absent: boolean;
+  evening_pickup_absent: boolean;
+  reason: string | null;
+  remark: string | null;
 }
 
 export interface Absence extends AbsenceRequest {
   id: ID;
   createdAt: ISODateTime;
+}
+
+export interface Absence {
+  status: string;
+  message: string;
+  result: unknown;
 }
 
 /* ---------- Chat ---------- */

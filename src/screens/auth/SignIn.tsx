@@ -131,7 +131,7 @@ export default function SignInScreen({ navigation }: Props) {
     setLoading(true);
     try {
       const res = await api.post('/auth/request-otp', { phone_number: phone }, { auth: false });
-      console.log('sign in',res)
+      console.log('sign in', res)
       navigation.navigate('OTP', {
         identifier: phone,
         purpose: 'signup',

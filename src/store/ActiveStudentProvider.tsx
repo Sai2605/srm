@@ -30,9 +30,13 @@ export function ActiveStudentProvider({
 }: {
   children: ReactNode;
 }) {
-  // const { data: students = [], isLoading } = useStudents();
-  const students = mockStudents;
-  const isLoading = false;
+  const { data: students = [], isLoading ,error} = useStudents();
+  console.log('read-student-data', students)
+  console.log('STUDENTS DATA:', students);
+  console.log('IS ARRAY:', Array.isArray(students));
+  console.log('STUDENTS ERROR:', error);
+  // const students = mockStudents;
+  // const isLoading = false;
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hasLoadedSavedId, setHasLoadedSavedId] = useState(false);
@@ -83,7 +87,7 @@ export function ActiveStudentProvider({
 
     // Otherwise, select an active student, then the first student.
     return (
-      students.find((student) => student.status === 'active') ??
+      students.find((student) => student.isPrimary === true) ??
       students[0] ??
       null
     );

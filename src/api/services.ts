@@ -24,6 +24,8 @@ import type {
 } from './../types/models';
 import type {
   AddGuardianRequest,
+  AllStudentDataItem,
+  AllStudentDataResponse,
   CreatePaymentOrderRequest,
   LinkStudentRequest,
   LogoutResponse,
@@ -53,8 +55,22 @@ export const profileService = {
 };
 
 export const studentService = {
-  list: () => api.get<Student[]>(e.students.list),
-  link: (body: LinkStudentRequest) => api.post<Student>(e.students.link, body),
+  list: async () => {
+    const response = await api.post<AllStudentDataResponse>(
+      e.students.list,
+    );
+
+    return response.result.map(student => ({
+      id: String(student.student_id),
+      name: student.student_name,
+      isPrimary: student.is_primary === 1,
+      class: student.class,
+      schoolName: student.schoolname,
+      pickupPerson: student.pickup_person,
+      morningPickupTime: student.morning_pickup_time,
+      eveningPickupTime: student.evening_pickup_time,
+    }));
+  }, link: (body: LinkStudentRequest) => api.post<AllStudentDataItem>(e.students.link, body),
   guardians: (studentId: string) => api.get<Guardian[]>(e.students.guardians(studentId)),
   addGuardian: (studentId: string, body: AddGuardianRequest) =>
     api.post<Guardian>(e.students.guardians(studentId), body),
@@ -67,7 +83,7 @@ export const tripService = {
   /** Trips for one student on one day (YYYY-MM-DD). */
   byDate: (studentId: string, date: string) => api.get<Trip[]>(e.students.trips(studentId), { query: { date } }),
   live: (tripId: string) => api.get<LiveTrip>(e.trips.live(tripId)),
-  markAbsent: (body: AbsenceRequest) => api.post<Absence>(e.students.absences(body.studentId), body),
+  markAbsent: (body: AbsenceRequest) => api.post<Absence>(e.students.absences(), body),
 };
 
 export const chatService = {
