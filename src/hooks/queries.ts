@@ -52,7 +52,16 @@ export function useUpdateNotificationPrefs() {
 }
 
 /* ---------- Students ---------- */
-export const useStudents = () => useQuery({ queryKey: qk.students, queryFn: studentService.list });
+// export const useStudents = () => useQuery({ queryKey: qk.students, queryFn: studentService.list });
+
+export function useStudents(enabled = true) {
+  return useQuery({
+    queryKey: qk.students,
+    queryFn: studentService.list,
+    enabled,
+    retry: 1,
+  });
+}
 
 export function useLinkStudent() {
   const qc = useQueryClient();

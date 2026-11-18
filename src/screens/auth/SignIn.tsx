@@ -144,7 +144,7 @@ export default function SignInScreen({ navigation }: Props) {
   return (
     <KeyboardAvoidingView
       style={styles.flex}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       {/* <StatusBar barStyle="dark-content" backgroundColor={C.yellow} /> */}
       <ScrollView
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
 
   /* Hero */
   hero: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: C.yellow,
     alignItems: 'center',
     paddingTop: (StatusBar.currentHeight ?? 24) + 12,

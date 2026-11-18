@@ -42,10 +42,23 @@ export default function OtpScreen({ navigation, route }: Props) {
       return authService.verifyOtp(phone, otp);
     },
 
+    // onSuccess: async (res) => {
+    //   console.log('OTP verification success:', res);
+    //   ToastAndroid.show(res.message, ToastAndroid.BOTTOM)
+    //   await signIn(res);
+    // },
+
+
     onSuccess: async (res) => {
       console.log('OTP verification success:', res);
-      ToastAndroid.show(res.message, ToastAndroid.BOTTOM)
-      await signIn(res);
+      console.log('Token received:', !!res.token);
+
+      try {
+        await signIn(res);
+        console.log('Sign-in completed successfully');
+      } catch (error) {
+        console.log('Sign-in/token storage failed:', error);
+      }
     },
 
     onError: (error) => {

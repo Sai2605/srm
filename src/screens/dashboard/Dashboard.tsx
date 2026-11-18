@@ -24,7 +24,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../../navigation/MainNavigator';
 import MarkAbsentSheet from '../../modal/MarkAbsent';
 
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 type AbsenceParams = {
   date?: string;

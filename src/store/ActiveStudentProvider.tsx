@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStudents } from './../hooks/queries';
 import type { Student } from './../types/models';
 import { mockStudents } from '../data/mockStudents';
+import { useAuth } from './AuthProvider';
 
 const KEY = 'saferide.activeStudentId';
 
@@ -30,7 +31,8 @@ export function ActiveStudentProvider({
 }: {
   children: ReactNode;
 }) {
-  const { data: students = [], isLoading ,error} = useStudents();
+  const { status } = useAuth()
+  const { data: students = [], isLoading, error } = useStudents(status === 'signedIn');
   console.log('read-student-data', students)
   console.log('STUDENTS DATA:', students);
   console.log('IS ARRAY:', Array.isArray(students));
@@ -40,6 +42,7 @@ export function ActiveStudentProvider({
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hasLoadedSavedId, setHasLoadedSavedId] = useState(false);
+
 
   // Restore the previously selected student.
   useEffect(() => {
