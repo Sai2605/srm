@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, ToastAndroid, View } from 'react-native';
 // import { router } from 'expo-router';
 import { useProfile, useUpdateProfile } from './../../hooks/queries';
 import { errorMessage } from './../../api/client';
@@ -55,9 +55,11 @@ export default function EditProfileScreen() {
         phone_number: Number(parent?.result?.[0]?.phone_number)
       },
       {
-        onSuccess: async () => {
+        onSuccess: async (res) => {
           try {
             // Fetch updated parent details
+            console.log('res', res)
+            ToastAndroid.show('Parent update successfully', ToastAndroid.BOTTOM)
             await refetch();
 
             // Return to Settings screen
@@ -105,7 +107,7 @@ export default function EditProfileScreen() {
         hint="Changing your login number needs a new OTP."
       />
 
-      <TextField label="Alternate mobile (driver can call)" value={altPhone} onChangeText={setAltPhone} keyboardType="phone-pad" placeholder="+91" maxLength={10}/>
+      <TextField label="Alternate mobile (driver can call)" value={altPhone} onChangeText={setAltPhone} keyboardType="phone-pad" placeholder="+91" maxLength={10} />
       <TextField
         label="Email (for receipts)"
         value={email}

@@ -11,8 +11,8 @@ import { AppText, BackHeader, Button, Screen } from './../../components/ui';
 import { formatPhone } from './../../utils/format';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../types/auth.type';
-import { useMutation } from '@tanstack/react-query';
-import { authService } from '../../api/services';
+import { useMutation } from '@tanstack/react-query'; 
+import { authService } from '../../api/services';  
 
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'OTP'>
@@ -25,7 +25,7 @@ export default function OtpScreen({ navigation, route }: Props) {
   const inputRef = useRef<TextInputInstance>(null);
   const [code, setCode] = useState('');
   const [requestId, setRequestId] = useState();
-  const [seconds, setSeconds] = useState(Number(30));
+  const [seconds, setSeconds] = useState(Number(30));   
 
   useEffect(() => {
     if (seconds <= 0) return;

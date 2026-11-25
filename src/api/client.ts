@@ -12,6 +12,7 @@ import { tokenStorage } from './tokenStorage';
 import { mockRequest } from './mock';
 import { ApiError } from './errors';
 import type { ApiErrorBody } from './../types/api';
+import { ToastAndroid } from 'react-native';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
@@ -185,6 +186,15 @@ export async function request<T>(
     onUnauthorized?.();
 
     throw error;
+  }
+
+  if (res.status === 502) {
+    ToastAndroid.show(
+      'Server is temporarily unavailable. Please try again later.',
+      ToastAndroid.LONG,
+    );
+
+    throw await parseError(res);
   }
 
   if (!res.ok) {
