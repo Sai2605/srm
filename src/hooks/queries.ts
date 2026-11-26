@@ -23,6 +23,7 @@ export const qk = {
   messages: (threadId: string) => ['chats', threadId, 'messages'] as const,
   invoices: (sid: string) => ['students', sid, 'invoices'] as const,
   payments: (sid: string) => ['students', sid, 'payments'] as const,
+  unreadCount: ['chats', 'unread-count'] as const,
 };
 
 /* ---------- Profile ---------- */
@@ -183,3 +184,34 @@ export function useRefreshPayments(sid?: string) {
     qc.invalidateQueries({ queryKey: qk.payments(sid) });
   };
 }
+
+export const useUnreadCount = () =>
+  useQuery({
+    queryKey: qk.unreadCount,
+    queryFn: chatService.unreadCount,
+    refetchInterval: 15_000,
+  });
+
+export function useMarkChatRead(threadId: string) {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => chatService.markRead(threadId),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: qk.threads });
+      qc.invalidateQueries({ queryKey: qk.unreadCount });
+    },
+  });
+}
+
+export function useCreateConversation() {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: chatService.createConversation,
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: qk.threads });
+    },
+  });
+}
+

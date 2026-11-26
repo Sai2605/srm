@@ -26,6 +26,7 @@ import type {
   AddGuardianRequest,
   AllStudentDataItem,
   AllStudentDataResponse,
+  CreateConversationRequest,
   CreatePaymentOrderRequest,
   LinkStudentRequest,
   LogoutResponse,
@@ -86,11 +87,40 @@ export const tripService = {
   markAbsent: (body: AbsenceRequest) => api.post<Absence>(e.students.absences(), body),
 };
 
+// export const chatService = {
+//   threads: () => api.get<ChatThread[]>(e.chats.list),
+//   threadForTrip: (tripId: string) => api.get<ChatThread>(e.trips.chat(tripId)),
+//   messages: (threadId: string) => api.get<ChatMessage[]>(e.chats.messages(threadId)),
+//   send: (threadId: string, text: string) => api.post<ChatMessage>(e.chats.messages(threadId), { text }),
+// };
+
 export const chatService = {
-  threads: () => api.get<ChatThread[]>(e.chats.list),
-  threadForTrip: (tripId: string) => api.get<ChatThread>(e.trips.chat(tripId)),
-  messages: (threadId: string) => api.get<ChatMessage[]>(e.chats.messages(threadId)),
-  send: (threadId: string, text: string) => api.post<ChatMessage>(e.chats.messages(threadId), { text }),
+  // Conversation
+  threads: () =>
+    api.get<ChatThread[]>(e.chats.list),
+
+  threadForTrip: (tripId: string) =>
+    api.get<ChatThread>(e.trips.chat(tripId)),
+
+  createConversation: (body: CreateConversationRequest) =>
+    api.post<{ status: string }>(e.chats.create, body),
+
+  // Messages
+  messages: (threadId: string) =>
+    api.get<ChatMessage[]>(e.chats.messages(threadId)),
+
+  send: (threadId: string, text: string) =>
+    api.post<ChatMessage>(
+      e.chats.messages(threadId),
+      { text }
+    ),
+
+  markRead: (threadId: string) =>
+    api.put(e.chats.markRead(threadId)),
+
+  // Unread
+  unreadCount: () =>
+    api.get<{ count: number }>(e.chats.unreadCount),
 };
 
 export const paymentService = {

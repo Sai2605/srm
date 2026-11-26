@@ -96,3 +96,9 @@ export interface AllStudentDataResponse {
   message: string;
   result: AllStudentDataItem[];
 }
+
+export type CreateConversationRequest = {
+  driver_id: number;
+  student_id: number;
+  parent_id: number;
+};

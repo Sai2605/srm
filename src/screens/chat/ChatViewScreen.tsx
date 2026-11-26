@@ -2,12 +2,12 @@
  * One conversation. Opened either by thread id (from the chat list)
  * or by trip id (from a trip card / live trip) — then the thread is resolved first.
  */
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Linking, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import { router } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
-import { useMessages, useSendMessage, useThreads, useTripThread } from '../../hooks/queries';
+import { useMarkChatRead, useMessages, useSendMessage, useThreads, useTripThread, useUnreadCount } from '../../hooks/queries';
 import { errorMessage } from '../../api/client';
 import { colors, fonts, radius, spacing } from '../../theme';
 import { AppText, Avatar, ErrorState, IconButton, LoadingState } from '../../components/ui';
@@ -43,22 +43,27 @@ function ChatViewScreen({ thread }: { thread: ChatThread }) {
   const listRef = useRef<FlatList<ChatMessage>>(null);
   const readOnly = thread.kind === 'announcement';
   const person = thread.participant;
- const navigation = useNavigation();
+  const navigation = useNavigation();
   const submit = (value = text) => {
     const v = value.trim();
     if (!v) return;
     send.mutate(v);
     setText('');
   };
+  const markRead = useMarkChatRead(thread.id);
+
+  useEffect(() => {
+    markRead.mutate();
+  }, [thread.id]);
 
   return (
     <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1, backgroundColor: colors.surface }}>
       {/* Header */}
       <View style={styles.header}>
         <IconButton name='chevronLeft' label="Back" variant="soft"
-        //  onPress={() => router.back()}
-        onPress={() => navigation.goBack()}
-          />
+          //  onPress={() => router.back()}
+          onPress={() => navigation.goBack()}
+        />
         {person && <Avatar name={person.name} size={42} />}
         <View style={{ flex: 1, minWidth: 0 }}>
           <AppText variant="title" style={{ fontSize: 16 }} numberOfLines={1}>{person?.name ?? thread.title}</AppText>
@@ -72,7 +77,7 @@ function ChatViewScreen({ thread }: { thread: ChatThread }) {
       {thread.kind === 'trip' && thread.tripId && thread.tripStatus === 'in_progress' && (
         <Pressable
           accessibilityRole="button"
-        //   onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: thread.tripId! } })}
+          //   onPress={() => router.push({ pathname: '/live-trip/[tripId]', params: { tripId: thread.tripId! } })}
           style={styles.tripBanner}
         >
           <View style={styles.liveDot} />
@@ -113,8 +118,8 @@ function ChatViewScreen({ thread }: { thread: ChatThread }) {
             </ScrollView>
             <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}>
               <IconButton name='UserRoundX' label="Mark absent" variant="warning"
-            //    onPress={() => router.push('/mark-absent')}
-                />
+              //    onPress={() => router.push('/mark-absent')}
+              />
               <TextInput
                 value={text}
                 onChangeText={setText}

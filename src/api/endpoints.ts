@@ -29,8 +29,12 @@ export const endpoints = {
     chat: (tripId: string) => `/trips/${tripId}/chat`,
   },
   chats: {
-    list: '/chats',
+    list: '/chat/conversations',
     messages: (threadId: string) => `/chats/${threadId}/messages`,
+    create: '/chat/conversations',
+    // markRead: '/chat/conversations/13/read',
+    markRead: (threadId: string) => `/chats/${threadId}/messages`,
+    unreadCount: '/chat/unread-count'
   },
   payments: {
     createOrder: '/payments/orders',

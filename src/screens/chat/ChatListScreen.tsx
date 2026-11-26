@@ -12,6 +12,7 @@ import { ChatStackParamList } from '../../navigation/ChatNavigator';
 
 export default function ChatListScreen() {
   const { data = [], isLoading, isError, error, refetch, isRefetching } = useThreads();
+  console.log('messages', data)
   const general = data.filter((t) => t.kind === 'general');
   const trips = data.filter((t) => t.kind === 'trip');
   const announcements = data.filter((t) => t.kind === 'announcement');

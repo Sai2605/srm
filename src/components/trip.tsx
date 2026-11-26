@@ -33,6 +33,8 @@ type TripCardProps = {
     date: string;
     type: TripType;
   }) => void;
+  onChat?: () => void;
+  chatLoading?: boolean;
 };
 
 /* ---------- Date strip ---------- */
@@ -93,6 +95,8 @@ export function DriverRow({ driver, vehicle, compact, onChat, dark }: { driver: 
 export function TripCard({
   trip,
   onMarkAbsent,
+  onChat,
+  chatLoading,
 }: TripCardProps) {
   const chip = statusChip[trip.status];
   const startTime = trip.actualStart ?? trip.scheduledStart;
@@ -135,8 +139,15 @@ export function TripCard({
             }
           />
         )}
-        <Button label="Chat" size="sm" variant="secondary"
+        {/* <Button label="Chat" size="sm" variant="secondary"
         //  onPress={() => router.push({ pathname: '/chat/trip/[tripId]', params: { tripId: trip.id } })} 
+        /> */}
+        <Button
+          label="Chat"
+          size="sm"
+          variant="secondary"
+          onPress={onChat}
+          loading={chatLoading}
         />
         {trip.status === 'in_progress' && (
           <Button label="Track" size="sm" variant="accent"
