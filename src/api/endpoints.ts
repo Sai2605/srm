@@ -30,11 +30,13 @@ export const endpoints = {
   },
   chats: {
     list: '/chat/conversations',
+    getMessage: '/chat/conversations/1/messages',
     messages: (threadId: string) => `/chats/${threadId}/messages`,
     create: '/chat/conversations',
     // markRead: '/chat/conversations/13/read',
     markRead: (threadId: string) => `/chats/${threadId}/messages`,
-    unreadCount: '/chat/unread-count'
+    unreadCount: '/chat/unread-count',
+    fcmToken: '/chat/device-token'
   },
   payments: {
     createOrder: '/payments/orders',

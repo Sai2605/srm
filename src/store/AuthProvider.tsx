@@ -16,6 +16,7 @@ import { tokenStorage } from './../api/tokenStorage';
 import { authService } from './../api/services';
 
 import type { VerifyOtpResponse } from './../types/api';
+import { notificationService } from '../api/fcm';
 
 type Status = 'loading' | 'signedOut' | 'signedIn';
 
@@ -74,42 +75,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [clearSession]);
 
   // Save JWT after successful OTP verification.
-const signIn = useCallback(
-  async (res: VerifyOtpResponse) => {
-    try {
-      if (!res.token) {
-        throw new Error('Access token missing from OTP response');
+  const signIn = useCallback(
+    async (res: VerifyOtpResponse) => {
+      try {
+        if (!res.token) {
+          throw new Error('Access token missing from OTP response');
+        }
+
+        console.log('OTP token received:', true);
+
+        // 1. Save token first.
+        await tokenStorage.set({
+          accessToken: res.token,
+        });
+
+
+        // 2. Verify token persistence.
+        const savedToken = await tokenStorage.get();
+
+        if (savedToken?.accessToken !== res.token) {
+          throw new Error('Token was not saved correctly');
+        }
+
+        console.log('Token successfully saved');
+
+        await notificationService.registerFcmToken()
+
+        // 3. Clear old cached queries.
+        queryClient.clear();
+
+        // 4. Enable authenticated screens and queries.
+        setStatus('signedIn');
+
+      } catch (error) {
+        console.error('Sign-in failed:', error);
+        throw error;
       }
-
-      console.log('OTP token received:', true);
-
-      // 1. Save token first.
-      await tokenStorage.set({
-        accessToken: res.token,
-      });
-
-      // 2. Verify token persistence.
-      const savedToken = await tokenStorage.get();
-
-      if (savedToken?.accessToken !== res.token) {
-        throw new Error('Token was not saved correctly');
-      }
-
-      console.log('Token successfully saved');
-
-      // 3. Clear old cached queries.
-      queryClient.clear();
-
-      // 4. Enable authenticated screens and queries.
-      setStatus('signedIn');
-
-    } catch (error) {
-      console.error('Sign-in failed:', error);
-      throw error;
-    }
-  },
-  [queryClient],
-);
+    },
+    [queryClient],
+  );
 
   // Logout.
   const signOut = useCallback(async (): Promise<string> => {

@@ -56,14 +56,16 @@ export default function TripsScreen() {
   };
 
   const handleChatWithDriver = (trip: Trip) => {
-    console.log('button pressed')
+    console.log('button pressed', trip)
     if (!activeStudent) return;
 
-    const driverId = Number(trip.driver.id);
+    // const driverId = Number(trip.id);
+    const driverId = 5;
     const studentId = Number(activeStudent.id);
+    const parentId = Number(parent?.result?.[0]?.parent_id);
 
     if (!Number.isFinite(driverId) || !Number.isFinite(studentId) || !Number.isFinite(parentId)) {
-      console.warn('Invalid driver, student, or parent ID');
+      console.warn('Invalid driver, student, or parent ID', driverId, studentId, parentId);
       return;
     }
 
@@ -74,7 +76,8 @@ export default function TripsScreen() {
         parent_id: parentId, // Get this from your authenticated parent data
       },
       {
-        onSuccess: async () => {
+        onSuccess: async (res) => {
+          console.log('create conversation',res)
           await refetchThreads();
         },
         onError: (error) => {

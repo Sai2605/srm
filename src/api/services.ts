@@ -97,7 +97,7 @@ export const tripService = {
 export const chatService = {
   // Conversation
   threads: () =>
-    api.get<ChatThread[]>(e.chats.list),
+    api.get<ChatThread[]>(e.chats.getMessage),
 
   threadForTrip: (tripId: string) =>
     api.get<ChatThread>(e.trips.chat(tripId)),

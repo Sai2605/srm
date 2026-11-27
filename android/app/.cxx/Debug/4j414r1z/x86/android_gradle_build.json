@@ -2,7 +2,10 @@
   "buildFiles": [
     "D:\\Github\\srm\\node_modules\\@maplibre\\maplibre-react-native\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\@react-native-async-storage\\async-storage\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\@react-native-firebase\\app\\android\\src\\reactnative\\java\\io\\invertase\\firebase\\app\\generated\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\@react-native-firebase\\messaging\\android\\src\\main\\java\\io\\invertase\\firebase\\messaging\\generated\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-keychain\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\react-native-permissions\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-safe-area-context\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-screens\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-svg\\android\\src\\main\\jni\\CMakeLists.txt",
@@ -47,10 +50,25 @@
       "abi": "x86",
       "artifactName": "react_codegen_MapLibreReactNativeSpec"
     },
+    "react_codegen_RNFBAppTurboModules::@a0d44c1163aba7af3ea1": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_RNFBAppTurboModules"
+    },
+    "react_codegen_RNFBMessagingTurboModules::@23361e4831c0e3136ef6": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_RNFBMessagingTurboModules"
+    },
     "react_codegen_RNKeychainSpec::@f9a2cb36ebca2de4baf9": {
       "toolchain": "toolchain",
       "abi": "x86",
       "artifactName": "react_codegen_RNKeychainSpec"
+    },
+    "react_codegen_RNPermissionsSpec::@7ad697819b753921c957": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_RNPermissionsSpec"
     },
     "react_codegen_rnscreens::@25bcbd507e98d3a854ad": {
       "toolchain": "toolchain",

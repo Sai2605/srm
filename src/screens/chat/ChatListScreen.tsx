@@ -13,9 +13,13 @@ import { ChatStackParamList } from '../../navigation/ChatNavigator';
 export default function ChatListScreen() {
   const { data = [], isLoading, isError, error, refetch, isRefetching } = useThreads();
   console.log('messages', data)
-  const general = data.filter((t) => t.kind === 'general');
-  const trips = data.filter((t) => t.kind === 'trip');
-  const announcements = data.filter((t) => t.kind === 'announcement');
+  // Safely handle API response
+  const threads = Array.isArray(data) ? data : [];
+
+  console.log('Threads API response:', data);
+  const general = threads.filter((t) => t.kind === 'general');
+  const trips = threads.filter((t) => t.kind === 'trip');
+  const announcements = threads.filter((t) => t.kind === 'announcement');
   const navigation =
     useNavigation<NativeStackNavigationProp<ChatStackParamList>>();
 

@@ -2,7 +2,10 @@
   "buildFiles": [
     "D:\\Github\\srm\\node_modules\\@maplibre\\maplibre-react-native\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\@react-native-async-storage\\async-storage\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\@react-native-firebase\\app\\android\\src\\reactnative\\java\\io\\invertase\\firebase\\app\\generated\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\@react-native-firebase\\messaging\\android\\src\\main\\java\\io\\invertase\\firebase\\messaging\\generated\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-keychain\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\Github\\srm\\node_modules\\react-native-permissions\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-safe-area-context\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-screens\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\Github\\srm\\node_modules\\react-native-svg\\android\\src\\main\\jni\\CMakeLists.txt",
@@ -23,6 +26,11 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
+    "react_codegen_RNFBMessagingTurboModules::@23361e4831c0e3136ef6": {
+      "artifactName": "react_codegen_RNFBMessagingTurboModules",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
+    },
     "react_codegen_MapLibreReactNativeSpec::@de945e5eaa7dccd95d23": {
       "artifactName": "react_codegen_MapLibreReactNativeSpec",
       "abi": "arm64-v8a",
@@ -37,6 +45,16 @@
         "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\jsi\\libs\\android.arm64-v8a\\libjsi.so",
         "C:\\Users\\shiv\\.gradle\\caches\\9.4.1\\transforms\\2f3f04f29a7d86f4d7cc17e86688042f\\transformed\\react-android-0.87.1-debug\\prefab\\modules\\reactnative\\libs\\android.arm64-v8a\\libreactnative.so"
       ]
+    },
+    "react_codegen_RNPermissionsSpec::@7ad697819b753921c957": {
+      "artifactName": "react_codegen_RNPermissionsSpec",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
+    },
+    "react_codegen_RNFBAppTurboModules::@a0d44c1163aba7af3ea1": {
+      "artifactName": "react_codegen_RNFBAppTurboModules",
+      "abi": "arm64-v8a",
+      "runtimeFiles": []
     },
     "react_codegen_rnscreens::@25bcbd507e98d3a854ad": {
       "artifactName": "react_codegen_rnscreens",

@@ -10,9 +10,17 @@ D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\AsyncStorageSpec_autolinked_bu
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\AsyncStorageSpec_autolinked_build\CMakeFiles\react_codegen_AsyncStorageSpec.dir\react\renderer\components\AsyncStorageSpec\Props.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\AsyncStorageSpec_autolinked_build\CMakeFiles\react_codegen_AsyncStorageSpec.dir\react\renderer\components\AsyncStorageSpec\ShadowNodes.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\AsyncStorageSpec_autolinked_build\CMakeFiles\react_codegen_AsyncStorageSpec.dir\react\renderer\components\AsyncStorageSpec\States.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNFBAppTurboModules_autolinked_build\CMakeFiles\react_codegen_RNFBAppTurboModules.dir\RNFBAppTurboModules-generated.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNFBMessagingTurboModules_autolinked_build\CMakeFiles\react_codegen_RNFBMessagingTurboModules.dir\RNFBMessagingTurboModules-generated.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\RNKeychainSpec-generated.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\react\renderer\components\RNKeychainSpec\ComponentDescriptors.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\react\renderer\components\RNKeychainSpec\EventEmitters.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\react\renderer\components\RNKeychainSpec\Props.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\react\renderer\components\RNKeychainSpec\ShadowNodes.cpp.o
 D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNKeychainSpec_autolinked_build\CMakeFiles\react_codegen_RNKeychainSpec.dir\react\renderer\components\RNKeychainSpec\States.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\RNPermissionsSpec-generated.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\react\renderer\components\RNPermissionsSpec\ComponentDescriptors.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\react\renderer\components\RNPermissionsSpec\EventEmitters.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\react\renderer\components\RNPermissionsSpec\Props.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\react\renderer\components\RNPermissionsSpec\ShadowNodes.cpp.o
+D:\Github\srm\android\app\.cxx\Debug\4j414r1z\x86\RNPermissionsSpec_autolinked_build\CMakeFiles\react_codegen_RNPermissionsSpec.dir\react\renderer\components\RNPermissionsSpec\States.cpp.o
